@@ -1,0 +1,1050 @@
+ {/* <!-- Main Content --> */}
+      <div className="hk-pg-wrapper">
+        <div className="container-xxl">
+          {/* <!-- Page Header --> */}
+          <div className="hk-pg-header pg-header-wth-tab pt-7">
+            <div className="d-flex">
+              <div className="d-flex flex-wrap justify-content-between flex-1">
+                <div className="mb-lg-0 mb-2 me-8">
+                  <h1 className="pg-title">Welcome back</h1>
+                  <p>
+                    Create pages using a variety of features that leverage
+                    jampack components
+                  </p>
+                </div>
+                <div className="pg-header-action-wrap">
+                  <div className="input-group w-300p">
+                    <span className="input-affix-wrapper">
+                      <span className="input-prefix">
+                        <span className="feather-icon">
+                          <i data-feather="calendar"></i>
+                        </span>
+                      </span>
+                      <input
+                        className="form-control form-wth-icon"
+                        name="datetimes"
+                        value="Aug 18,2020 - Aug 19, 2020"
+                      />
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <ul className="nav nav-line nav-light nav-tabs">
+              <li className="nav-item">
+                <a className="nav-link active" data-bs-toggle="tab" href="#">
+                  <span className="nav-link-text">Overview</span>
+                </a>
+              </li>
+              <li className="nav-item">
+                <a className="nav-link" data-bs-toggle="tab" href="#">
+                  <span className="nav-link-text">Analytics</span>
+                </a>
+              </li>
+              <li className="nav-item">
+                <a className="nav-link" data-bs-toggle="tab" href="#">
+                  <span className="nav-link-text">Operations</span>
+                </a>
+              </li>
+            </ul>
+          </div>
+          {/* <!-- /Page Header --> */}
+
+          {/* <!-- Page Body --> */}
+          <div className="hk-pg-body">
+            <div className="tab-content">
+              <div className="tab-pane fade show active" id="tab_block_1">
+                <div className="row">
+                  <div className="col-xxl-9 col-lg-8 col-md-7 mb-md-4 mb-3">
+                    <div className="card card-border mb-0 h-100">
+                      <div className="card-header card-header-action">
+                        <h6>Audience Overview</h6>
+                        <div className="card-action-wrap">
+                          <div
+                            className="btn-group d-lg-flex d-none"
+                            role="group"
+                            aria-label="Basic outlined example"
+                          >
+                            <button
+                              type="button"
+                              className="btn btn-outline-light active"
+                            >
+                              All
+                            </button>
+                            <button
+                              type="button"
+                              className="btn btn-outline-light"
+                            >
+                              Sessions
+                            </button>
+                            <button
+                              type="button"
+                              className="btn btn-outline-light"
+                            >
+                              Source
+                            </button>
+                            <button
+                              type="button"
+                              className="btn btn-outline-light"
+                            >
+                              Referrals
+                            </button>
+                          </div>
+                          <select className="form-select d-lg-none d-flex">
+                            <option selected={true} value="1">
+                              All
+                            </option>
+                            <option value="2">Sessions</option>
+                            <option value="3">Source</option>
+                            <option value="4">Referrals</option>
+                          </select>
+                        </div>
+                      </div>
+                      <div className="card-body">
+                        <div className="text-center">
+                          <div className="d-inline-block">
+                            <span className="badge-status">
+                              <span className="badge bg-primary badge-indicator badge-indicator-nobdr"></span>
+                              <span className="badge-label">Direct</span>
+                            </span>
+                          </div>
+                          <div className="d-inline-block ms-3">
+                            <span className="badge-status">
+                              <span className="badge bg-primary-light-2 badge-indicator badge-indicator-nobdr"></span>
+                              <span className="badge-label">
+                                Organic search
+                              </span>
+                            </span>
+                          </div>
+                          <div className="d-inline-block ms-3">
+                            <span className="badge-status">
+                              <span className="badge bg-primary-light-4 badge-indicator badge-indicator-nobdr"></span>
+                              <span className="badge-label">Referral</span>
+                            </span>
+                          </div>
+                        </div>
+                        <div id="column_chart_2"></div>
+                        <div className="separator-full mt-5"></div>
+                        <div className="flex-grow-1 ms-lg-3">
+                          <div className="row">
+                            <div className="col-xxl-3 col-sm-6 mb-xxl-0 mb-3">
+                              <span className="d-block fw-medium fs-7">
+                                Users
+                              </span>
+                              <div className="d-flex align-items-center">
+                                <span className="d-block fs-4 fw-medium text-dark mb-0">
+                                  8.8k
+                                </span>
+                                <span className="badge badge-sm badge-soft-success ms-1">
+                                  <i className="bi bi-arrow-up"></i> 7.5%
+                                </span>
+                              </div>
+                            </div>
+                            <div className="col-xxl-3 col-sm-6 mb-xxl-0 mb-3">
+                              <span className="d-block fw-medium fs-7">
+                                Sessions
+                              </span>
+                              <div className="d-flex align-items-center">
+                                <span className="d-block fs-4 fw-medium text-dark mb-0">
+                                  18.2k
+                                </span>
+                                <span className="badge badge-sm badge-soft-success ms-1">
+                                  <i className="bi bi-arrow-up"></i> 7.2%
+                                </span>
+                              </div>
+                            </div>
+                            <div className="col-xxl-3 col-sm-6 mb-xxl-0 mb-3">
+                              <span className="d-block fw-medium fs-7">
+                                Bounce rate
+                              </span>
+                              <div className="d-flex align-items-center">
+                                <span className="d-block fs-4 fw-medium text-dark mb-0">
+                                  46.2%
+                                </span>
+                                <span className="badge badge-sm badge-soft-danger ms-1">
+                                  <i className="bi bi-arrow-down"></i> 0.2%
+                                </span>
+                              </div>
+                            </div>
+                            <div className="col-xxl-3 col-sm-6">
+                              <span className="d-block fw-medium fs-7">
+                                Session duration
+                              </span>
+                              <div className="d-flex align-items-center">
+                                <span className="d-block fs-4 fw-medium text-dark mb-0">
+                                  4m 24s
+                                </span>
+                                <span className="badge badge-sm badge-soft-success ms-1">
+                                  <i className="bi bi-arrow-up"></i> 10.8%
+                                </span>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="col-xxl-3 col-lg-4 col-md-5 mb-md-4 mb-3">
+                    <div className="card card-border mb-0  h-100">
+                      <div className="card-header card-header-action">
+                        <h6>Returning Customers</h6>
+                        <div className="card-action-wrap">
+                          <a
+                            className="btn btn-icon btn-rounded btn-flush-dark flush-soft-hover dropdown-toggle no-caret"
+                            href="#"
+                            data-bs-toggle="dropdown"
+                          >
+                            <span className="icon">
+                              <span className="feather-icon">
+                                <i data-feather="more-vertical"></i>
+                              </span>
+                            </span>
+                          </a>
+                          <div className="dropdown-menu dropdown-menu-end">
+                            <a className="dropdown-item" href="#">
+                              Action
+                            </a>
+                            <a className="dropdown-item" href="#">
+                              Another action
+                            </a>
+                            <a className="dropdown-item" href="#">
+                              Something else here
+                            </a>
+                            <div className="dropdown-divider"></div>
+                            <a className="dropdown-item" href="#">
+                              Separated link
+                            </a>
+                          </div>
+                        </div>
+                      </div>
+                      <div className="card-body text-center">
+                        <div id="radial_chart_2"></div>
+                        <div className="d-inline-block mt-4">
+                          <div className="mb-4">
+                            <span className="d-block badge-status lh-1">
+                              <span className="badge bg-primary badge-indicator badge-indicator-nobdr d-inline-block"></span>
+                              <span className="badge-label d-inline-block">
+                                Organic
+                              </span>
+                            </span>
+                            <span className="d-block text-dark fs-5 fw-medium mb-0 mt-1">
+                              $243.50
+                            </span>
+                          </div>
+                          <div>
+                            <span className="badge-status lh-1">
+                              <span className="badge bg-primary-light-2 badge-indicator badge-indicator-nobdr"></span>
+                              <span className="badge-label">Marketing</span>
+                            </span>
+                            <span className="d-block text-dark fs-5 fw-medium mb-0 mt-1">
+                              $1469
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div className="row">
+                  <div className="col-md-12 mb-md-4 mb-3">
+                    <div className="card card-border mb-0 h-100">
+                      <div className="card-header card-header-action">
+                        <h6>Active users</h6>
+                        <div className="card-action-wrap">
+                          <button
+                            type="button"
+                            className="btn btn-outline-light"
+                          >
+                            Real time chart
+                          </button>
+                        </div>
+                      </div>
+                      <div className="card-body">
+                        <div className="row">
+                          <div className="col-md-8">
+                            <div id="anim_map_2" className="h-300p"></div>
+                          </div>
+                          <div className="col-md-4">
+                            <div className="media align-items-center mb-3">
+                              <div className="media-head me-3">
+                                <div className="avatar avatar-xxs avatar-rounded">
+                                  <img
+                                    src="dist/fonts/flags/4x3/us.svg"
+                                    alt="user"
+                                    className="avatar-img"
+                                  />
+                                </div>
+                              </div>
+                              <div className="media-body">
+                                <div className="progress-lb-wrap">
+                                  <label className="progress-label mb-0">
+                                    United States
+                                  </label>
+                                  <div className="d-flex align-items-center">
+                                    <div className="progress progress-bar-rounded progress-bar-xs flex-1">
+                                      <div
+                                        className="progress-bar bg-blue-dark-3 w-80"
+                                        role="progressbar"
+                                        aria-valuenow={80}
+                                        aria-valuemin={0}
+                                        aria-valuemax={100}
+                                      ></div>
+                                    </div>
+                                    <div className="fs-8 mnw-30p ms-3">80%</div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <div className="media align-items-center mb-3">
+                              <div className="media-head me-3">
+                                <div className="avatar avatar-xxs avatar-rounded">
+                                  <img
+                                    src="dist/fonts/flags/4x3/in.svg"
+                                    alt="user"
+                                    className="avatar-img"
+                                  />
+                                </div>
+                              </div>
+                              <div className="media-body">
+                                <div className="progress-lb-wrap">
+                                  <label className="progress-label mb-0">
+                                    India
+                                  </label>
+                                  <div className="d-flex align-items-center">
+                                    <div className="progress progress-bar-rounded progress-bar-xs flex-1">
+                                      <div
+                                        className="progress-bar bg-blue w-50"
+                                        role="progressbar"
+                                        aria-valuenow={50}
+                                        aria-valuemin={0}
+                                        aria-valuemax={100}
+                                      ></div>
+                                    </div>
+                                    <div className="fs-8 mnw-30p ms-3">50%</div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <div className="media align-items-center mb-3">
+                              <div className="media-head me-3">
+                                <div className="avatar avatar-xxs avatar-rounded">
+                                  <img
+                                    src="dist/fonts/flags/4x3/gb.svg"
+                                    alt="user"
+                                    className="avatar-img"
+                                  />
+                                </div>
+                              </div>
+                              <div className="media-body">
+                                <div className="progress-lb-wrap">
+                                  <label className="progress-label mb-0">
+                                    United Kingdom
+                                  </label>
+                                  <div className="d-flex align-items-center">
+                                    <div className="progress progress-bar-rounded progress-bar-xs flex-1">
+                                      <div
+                                        className="progress-bar bg-primary w-30"
+                                        role="progressbar"
+                                        aria-valuenow={30}
+                                        aria-valuemin={0}
+                                        aria-valuemax={100}
+                                      ></div>
+                                    </div>
+                                    <div className="fs-8 mnw-30p ms-3">30%</div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <div className="media align-items-center mb-3">
+                              <div className="media-head me-3">
+                                <div className="avatar avatar-xxs avatar-rounded">
+                                  <img
+                                    src="dist/fonts/flags/4x3/au.svg"
+                                    alt="user"
+                                    className="avatar-img"
+                                  />
+                                </div>
+                              </div>
+                              <div className="media-body">
+                                <div className="progress-lb-wrap">
+                                  <label className="progress-label mb-0">
+                                    Australia
+                                  </label>
+                                  <div className="d-flex align-items-center">
+                                    <div className="progress progress-bar-rounded progress-bar-xs flex-1">
+                                      <div
+                                        className="progress-bar bg-grey-dark-2 w-15"
+                                        role="progressbar"
+                                        aria-valuenow={15}
+                                        aria-valuemin={0}
+                                        aria-valuemax={100}
+                                      ></div>
+                                    </div>
+                                    <div className="fs-8 mnw-30p ms-3">15%</div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <div className="media align-items-center">
+                              <div className="media-head me-3">
+                                <div className="avatar avatar-xxs avatar-rounded">
+                                  <img
+                                    src="dist/fonts/flags/4x3/ca.svg"
+                                    alt="user"
+                                    className="avatar-img"
+                                  />
+                                </div>
+                              </div>
+                              <div className="media-body">
+                                <div className="progress-lb-wrap">
+                                  <label className="progress-label mb-0">
+                                    Canada
+                                  </label>
+                                  <div className="d-flex align-items-center">
+                                    <div className="progress progress-bar-rounded progress-bar-xs flex-1">
+                                      <div
+                                        className="progress-bar bg-grey w-10"
+                                        role="progressbar"
+                                        aria-valuenow={10}
+                                        aria-valuemin={0}
+                                        aria-valuemax={100}
+                                      ></div>
+                                    </div>
+                                    <div className="fs-8 mnw-30p ms-3">10%</div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div className="row">
+                  <div className="col-md-12 mb-md-4 mb-3">
+                    <div className="card card-border mb-0 h-100">
+                      <div className="card-header card-header-action">
+                        <h6>
+                          New Customers
+                          <span className="badge badge-sm badge-light ms-1">
+                            240
+                          </span>
+                        </h6>
+                        <div className="card-action-wrap">
+                          <button className="btn btn-sm btn-outline-light">
+                            <span>
+                              <span className="icon">
+                                <span className="feather-icon">
+                                  <i data-feather="upload"></i>
+                                </span>
+                              </span>
+                              <span className="btn-text">import</span>
+                            </span>
+                          </button>
+                          <button className="btn btn-sm btn-primary ms-3">
+                            <span>
+                              <span className="icon">
+                                <span className="feather-icon">
+                                  <i data-feather="plus"></i>
+                                </span>
+                              </span>
+                              <span className="btn-text">Add new</span>
+                            </span>
+                          </button>
+                        </div>
+                      </div>
+                      <div className="card-body">
+                        <div className="contact-list-view">
+                          <table
+                            id="datable_1"
+                            className="table nowrap w-100 mb-5"
+                          >
+                            <thead>
+                              <tr>
+                                <th>
+                                  <span className="form-check fs-6 mb-0">
+                                    <input
+                                      type="checkbox"
+                                      className="form-check-input check-select-all"
+                                      id="customCheck1"
+                                    />
+                                    <label
+                                      className="form-check-label"
+                                      htmlFor="customCheck1"
+                                    ></label>
+                                  </span>
+                                </th>
+                                <th>Name</th>
+                                <th className="w-25">Usage</th>
+                                <th>Last Update</th>
+                                <th>Tags</th>
+                                <th></th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr>
+                                <td></td>
+                                <td>
+                                  <div className="media align-items-center">
+                                    <div className="media-head me-2">
+                                      <div className="avatar avatar-xs avatar-rounded">
+                                        <img
+                                          src="dist/img/logo-avatar-1.png"
+                                          alt="user"
+                                          className="avatar-img"
+                                        />
+                                      </div>
+                                    </div>
+                                    <div className="media-body">
+                                      <div className="text-high-em">
+                                        Phone Pay
+                                      </div>
+                                      <div className="fs-7">
+                                        <a
+                                          href="#"
+                                          className="table-link-text link-medium-em"
+                                        >
+                                          phonepay.in
+                                        </a>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </td>
+                                <td>
+                                  <div className="progress-lb-wrap">
+                                    <div className="d-flex align-items-center">
+                                      <div className="progress progress-bar-rounded progress-bar-xs flex-1">
+                                        <div
+                                          className="progress-bar bg-blue-dark-3 w-90"
+                                          role="progressbar"
+                                          aria-valuenow={90}
+                                          aria-valuemin={0}
+                                          aria-valuemax={100}
+                                        ></div>
+                                      </div>
+                                      <div className="fs-8 ms-3">90%</div>
+                                    </div>
+                                  </div>
+                                </td>
+                                <td>10 June, 2022</td>
+                                <td>
+                                  <span className="badge badge-soft-secondary  my-1  me-2">
+                                    admin
+                                  </span>
+                                  <span className="badge badge-soft-secondary my-1  me-2">
+                                    Finance
+                                  </span>
+                                </td>
+                                <td>
+                                  <div className="d-flex align-items-center">
+                                    <a
+                                      className="btn btn-icon btn-flush-dark btn-rounded flush-soft-hover"
+                                      data-bs-toggle="tooltip"
+                                      data-placement="top"
+                                      title=""
+                                      data-bs-original-title="Edit"
+                                      href="#"
+                                    >
+                                      <span className="icon">
+                                        <span className="feather-icon">
+                                          <i data-feather="edit-2"></i>
+                                        </span>
+                                      </span>
+                                    </a>
+                                    <a
+                                      className="btn btn-icon btn-flush-dark btn-rounded flush-soft-hover del-button"
+                                      data-bs-toggle="tooltip"
+                                      data-placement="top"
+                                      title=""
+                                      data-bs-original-title="Delete"
+                                      href="#"
+                                    >
+                                      <span className="icon">
+                                        <span className="feather-icon">
+                                          <i data-feather="trash"></i>
+                                        </span>
+                                      </span>
+                                    </a>
+                                  </div>
+                                </td>
+                              </tr>
+                              <tr>
+                                <td></td>
+                                <td>
+                                  <div className="media align-items-center">
+                                    <div className="media-head me-2">
+                                      <div className="avatar avatar-xs avatar-rounded">
+                                        <img
+                                          src="dist/img/logo-avatar-2.png"
+                                          alt="user"
+                                          className="avatar-img"
+                                        />
+                                      </div>
+                                    </div>
+                                    <div className="media-body">
+                                      <div className="text-high-em">Swiggy</div>
+                                      <div className="fs-7">
+                                        <a
+                                          href="#"
+                                          className="table-link-text link-medium-em"
+                                        >
+                                          swiggy.com
+                                        </a>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </td>
+                                <td>
+                                  <div className="progress-lb-wrap">
+                                    <div className="d-flex align-items-center">
+                                      <div className="progress progress-bar-rounded progress-bar-xs flex-1">
+                                        <div
+                                          className="progress-bar bg-blue w-75"
+                                          role="progressbar"
+                                          aria-valuenow={75}
+                                          aria-valuemin={0}
+                                          aria-valuemax={100}
+                                        ></div>
+                                      </div>
+                                      <div className="fs-8 ms-3">75%</div>
+                                    </div>
+                                  </div>
+                                </td>
+                                <td>09 July, 2022</td>
+                                <td>
+                                  <span className="badge badge-soft-secondary my-1  me-2">
+                                    customer data
+                                  </span>
+                                  <span className="badge badge-soft-secondary  my-1  me-2">
+                                    admin
+                                  </span>
+                                  <span className="badge badge-soft-secondary  my-1  me-2">
+                                    +4
+                                  </span>
+                                </td>
+                                <td>
+                                  <div className="d-flex align-items-center">
+                                    <a
+                                      className="btn btn-icon btn-flush-dark btn-rounded flush-soft-hover"
+                                      data-bs-toggle="tooltip"
+                                      data-placement="top"
+                                      title=""
+                                      data-bs-original-title="Edit"
+                                      href="#"
+                                    >
+                                      <span className="icon">
+                                        <span className="feather-icon">
+                                          <i data-feather="edit-2"></i>
+                                        </span>
+                                      </span>
+                                    </a>
+                                    <a
+                                      className="btn btn-icon btn-flush-dark btn-rounded flush-soft-hover del-button"
+                                      data-bs-toggle="tooltip"
+                                      data-placement="top"
+                                      title=""
+                                      data-bs-original-title="Delete"
+                                      href="#"
+                                    >
+                                      <span className="icon">
+                                        <span className="feather-icon">
+                                          <i data-feather="trash"></i>
+                                        </span>
+                                      </span>
+                                    </a>
+                                  </div>
+                                </td>
+                              </tr>
+                              <tr>
+                                <td></td>
+                                <td>
+                                  <div className="media align-items-center">
+                                    <div className="media-head me-2">
+                                      <div className="avatar avatar-xs avatar-rounded">
+                                        <img
+                                          src="dist/img/logo-avatar-3.png"
+                                          alt="user"
+                                          className="avatar-img"
+                                        />
+                                      </div>
+                                    </div>
+                                    <div className="media-body">
+                                      <div className="text-high-em">
+                                        Coursera
+                                      </div>
+                                      <div className="fs-7">
+                                        <a
+                                          href="#"
+                                          className="table-link-text link-medium-em"
+                                        >
+                                          coursera.com
+                                        </a>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </td>
+                                <td>
+                                  <div className="progress-lb-wrap">
+                                    <div className="d-flex align-items-center">
+                                      <div className="progress progress-bar-rounded progress-bar-xs flex-1">
+                                        <div
+                                          className="progress-bar bg-primary w-50"
+                                          role="progressbar"
+                                          aria-valuenow={50}
+                                          aria-valuemin={0}
+                                          aria-valuemax={100}
+                                        ></div>
+                                      </div>
+                                      <div className="fs-8 ms-3">50%</div>
+                                    </div>
+                                  </div>
+                                </td>
+                                <td>24 Aug, 2022</td>
+                                <td>
+                                  <span className="badge badge-soft-secondary my-1  me-2">
+                                    education
+                                  </span>
+                                  <span className="badge badge-soft-secondary  my-1  me-2">
+                                    admin
+                                  </span>
+                                  <span className="badge badge-soft-secondary  my-1  me-2">
+                                    +3
+                                  </span>
+                                </td>
+                                <td>
+                                  <div className="d-flex align-items-center">
+                                    <a
+                                      className="btn btn-icon btn-flush-dark btn-rounded flush-soft-hover"
+                                      data-bs-toggle="tooltip"
+                                      data-placement="top"
+                                      title=""
+                                      data-bs-original-title="Edit"
+                                      href="#"
+                                    >
+                                      <span className="icon">
+                                        <span className="feather-icon">
+                                          <i data-feather="edit-2"></i>
+                                        </span>
+                                      </span>
+                                    </a>
+                                    <a
+                                      className="btn btn-icon btn-flush-dark btn-rounded flush-soft-hover del-button"
+                                      data-bs-toggle="tooltip"
+                                      data-placement="top"
+                                      title=""
+                                      data-bs-original-title="Delete"
+                                      href="#"
+                                    >
+                                      <span className="icon">
+                                        <span className="feather-icon">
+                                          <i data-feather="trash"></i>
+                                        </span>
+                                      </span>
+                                    </a>
+                                  </div>
+                                </td>
+                              </tr>
+                              <tr>
+                                <td></td>
+                                <td>
+                                  <div className="media align-items-center">
+                                    <div className="media-head me-2">
+                                      <div className="avatar avatar-xs avatar-rounded">
+                                        <img
+                                          src="dist/img/logo-avatar-4.png"
+                                          alt="user"
+                                          className="avatar-img"
+                                        />
+                                      </div>
+                                    </div>
+                                    <div className="media-body">
+                                      <div className="text-high-em">Tinder</div>
+                                      <div className="fs-7">
+                                        <a
+                                          href="#"
+                                          className="table-link-text link-medium-em"
+                                        >
+                                          tinder.com
+                                        </a>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </td>
+                                <td>
+                                  <div className="progress-lb-wrap">
+                                    <div className="d-flex align-items-center">
+                                      <div className="progress progress-bar-rounded progress-bar-xs flex-1">
+                                        <div
+                                          className="progress-bar bg-primary-dark-2 w-60"
+                                          role="progressbar"
+                                          aria-valuenow={60}
+                                          aria-valuemin={0}
+                                          aria-valuemax={100}
+                                        ></div>
+                                      </div>
+                                      <div className="fs-8 ms-3">60%</div>
+                                    </div>
+                                  </div>
+                                </td>
+                                <td>17 May, 2022</td>
+                                <td>
+                                  <span className="badge badge-soft-secondary my-1  me-2">
+                                    Social
+                                  </span>
+                                </td>
+                                <td>
+                                  <div className="d-flex align-items-center">
+                                    <a
+                                      className="btn btn-icon btn-flush-dark btn-rounded flush-soft-hover"
+                                      data-bs-toggle="tooltip"
+                                      data-placement="top"
+                                      title=""
+                                      data-bs-original-title="Edit"
+                                      href="#"
+                                    >
+                                      <span className="icon">
+                                        <span className="feather-icon">
+                                          <i data-feather="edit-2"></i>
+                                        </span>
+                                      </span>
+                                    </a>
+                                    <a
+                                      className="btn btn-icon btn-flush-dark btn-rounded flush-soft-hover del-button"
+                                      data-bs-toggle="tooltip"
+                                      data-placement="top"
+                                      title=""
+                                      data-bs-original-title="Delete"
+                                      href="#"
+                                    >
+                                      <span className="icon">
+                                        <span className="feather-icon">
+                                          <i data-feather="trash"></i>
+                                        </span>
+                                      </span>
+                                    </a>
+                                  </div>
+                                </td>
+                              </tr>
+                              <tr>
+                                <td></td>
+                                <td>
+                                  <div className="media align-items-center">
+                                    <div className="media-head me-2">
+                                      <div className="avatar avatar-xs avatar-rounded">
+                                        <img
+                                          src="dist/img/logo-avatar-5.png"
+                                          alt="user"
+                                          className="avatar-img"
+                                        />
+                                      </div>
+                                    </div>
+                                    <div className="media-body">
+                                      <div className="text-high-em">PCD</div>
+                                      <div className="fs-7">
+                                        <a
+                                          href="#"
+                                          className="table-link-text link-medium-em"
+                                        >
+                                          pcdeals.com
+                                        </a>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </td>
+                                <td>
+                                  <div className="progress-lb-wrap">
+                                    <div className="d-flex align-items-center">
+                                      <div className="progress progress-bar-rounded progress-bar-xs flex-1">
+                                        <div
+                                          className="progress-bar bg-grey w-30"
+                                          role="progressbar"
+                                          aria-valuenow={30}
+                                          aria-valuemin={0}
+                                          aria-valuemax={100}
+                                        ></div>
+                                      </div>
+                                      <div className="fs-8 ms-3">30%</div>
+                                    </div>
+                                  </div>
+                                </td>
+                                <td>13 July, 2022</td>
+                                <td>
+                                  <span className="badge badge-soft-secondary my-1  me-2">
+                                    Portal
+                                  </span>
+                                  <span className="badge badge-soft-secondary  my-1  me-2">
+                                    admin
+                                  </span>
+                                  <span className="badge badge-soft-secondary  my-1  me-2">
+                                    +3
+                                  </span>
+                                </td>
+                                <td>
+                                  <div className="d-flex align-items-center">
+                                    <a
+                                      className="btn btn-icon btn-flush-dark btn-rounded flush-soft-hover"
+                                      data-bs-toggle="tooltip"
+                                      data-placement="top"
+                                      title=""
+                                      data-bs-original-title="Edit"
+                                      href="#"
+                                    >
+                                      <span className="icon">
+                                        <span className="feather-icon">
+                                          <i data-feather="edit-2"></i>
+                                        </span>
+                                      </span>
+                                    </a>
+                                    <a
+                                      className="btn btn-icon btn-flush-dark btn-rounded flush-soft-hover del-button"
+                                      data-bs-toggle="tooltip"
+                                      data-placement="top"
+                                      title=""
+                                      data-bs-original-title="Delete"
+                                      href="#"
+                                    >
+                                      <span className="icon">
+                                        <span className="feather-icon">
+                                          <i data-feather="trash"></i>
+                                        </span>
+                                      </span>
+                                    </a>
+                                  </div>
+                                </td>
+                              </tr>
+                              <tr>
+                                <td></td>
+                                <td>
+                                  <div className="media align-items-center">
+                                    <div className="media-head me-2">
+                                      <div className="avatar avatar-xs avatar-rounded">
+                                        <img
+                                          src="dist/img/logo-avatar-6.png"
+                                          alt="user"
+                                          className="avatar-img"
+                                        />
+                                      </div>
+                                    </div>
+                                    <div className="media-body">
+                                      <div className="text-high-em">
+                                        Icons 8
+                                      </div>
+                                      <div className="fs-7">
+                                        <a
+                                          href="#"
+                                          className="table-link-text link-medium-em"
+                                        >
+                                          icons8.com
+                                        </a>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </td>
+                                <td>
+                                  <div className="progress-lb-wrap">
+                                    <div className="d-flex align-items-center">
+                                      <div className="progress progress-bar-rounded progress-bar-xs flex-1">
+                                        <div
+                                          className="progress-bar bg-green-dark-1 w-45"
+                                          role="progressbar"
+                                          aria-valuenow={45}
+                                          aria-valuemin={0}
+                                          aria-valuemax={100}
+                                        ></div>
+                                      </div>
+                                      <div className="fs-8 ms-3">45%</div>
+                                    </div>
+                                  </div>
+                                </td>
+                                <td>14 July, 2022</td>
+                                <td>
+                                  <span className="badge badge-soft-secondary my-1  me-2">
+                                    Library
+                                  </span>
+                                  <span className="badge badge-soft-secondary  my-1  me-2">
+                                    Asset
+                                  </span>
+                                </td>
+                                <td>
+                                  <div className="d-flex align-items-center">
+                                    <a
+                                      className="btn btn-icon btn-flush-dark btn-rounded flush-soft-hover"
+                                      data-bs-toggle="tooltip"
+                                      data-placement="top"
+                                      title=""
+                                      data-bs-original-title="Edit"
+                                      href="#"
+                                    >
+                                      <span className="icon">
+                                        <span className="feather-icon">
+                                          <i data-feather="edit-2"></i>
+                                        </span>
+                                      </span>
+                                    </a>
+                                    <a
+                                      className="btn btn-icon btn-flush-dark btn-rounded flush-soft-hover del-button"
+                                      data-bs-toggle="tooltip"
+                                      data-placement="top"
+                                      title=""
+                                      data-bs-original-title="Delete"
+                                      href="#"
+                                    >
+                                      <span className="icon">
+                                        <span className="feather-icon">
+                                          <i data-feather="trash"></i>
+                                        </span>
+                                      </span>
+                                    </a>
+                                  </div>
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          {/* <!-- /Page Body -->		 */}
+        </div>
+
+        {/* <!-- Page Footer --> */}
+        <div className="hk-footer">
+          <footer className="container-xxl footer">
+            <div className="row">
+              <div className="col-xl-8">
+                <p className="footer-text">
+                  <span className="copy-text">
+                    Jampack © 2022 All rights reserved.
+                  </span>{" "}
+                  <a href="#" className="" target="_blank">
+                    Privacy Policy
+                  </a>
+                  <span className="footer-link-sep">|</span>
+                  <a href="#" className="" target="_blank">
+                    T&C
+                  </a>
+                  <span className="footer-link-sep">|</span>
+                  <a href="#" className="" target="_blank">
+                    System Status
+                  </a>
+                </p>
+              </div>
+              <div className="col-xl-4">
+                <a href="#" className="footer-extr-link link-default">
+                  <span className="feather-icon">
+                    <i data-feather="external-link"></i>
+                  </span>
+                  <u>Send feedback to our help forum</u>
+                </a>
+              </div>
+            </div>
+          </footer>
+        </div>
+        {/* <!-- / Page Footer --> */}
+      </div>
+      {/* <!-- /Main Content --> */}
