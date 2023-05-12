@@ -1,3 +1,4 @@
+import avatar from "./assets/img/avatar12.jpg";
 import "./scss/style.scss";
 
 function App() {
@@ -188,7 +189,7 @@ function App() {
                       <div className="media-head me-2">
                         <div className="avatar avatar-xs avatar-rounded">
                           <img
-                            src="dist/img/avatar3.jpg"
+                            src="../src/assets/img/avatar3.jpg"
                             alt="user"
                             className="avatar-img"
                           />
@@ -212,7 +213,7 @@ function App() {
                       <div className="media-head me-2">
                         <div className="avatar avatar-xs avatar-rounded">
                           <img
-                            src="dist/img/avatar4.jpg"
+                            src="./assets/img/avatar4.jpg"
                             alt="user"
                             className="avatar-img"
                           />
@@ -293,7 +294,7 @@ function App() {
                           <div className="media-head">
                             <div className="avatar avatar-rounded avatar-sm">
                               <img
-                                src="dist/img/avatar2.jpg"
+                                src="../src/assets/img/avatar2.jpg"
                                 alt="user"
                                 className="avatar-img"
                               />
@@ -373,7 +374,7 @@ function App() {
                           <div className="media-head">
                             <div className="avatar avatar-sm avatar-rounded">
                               <img
-                                src="dist/img/avatar3.jpg"
+                                src="../src/assets/img/avatar3.jpg"
                                 alt="user"
                                 className="avatar-img"
                               />
@@ -399,7 +400,7 @@ function App() {
                           <div className="media-head">
                             <div className="avatar avatar-sm avatar-rounded">
                               <img
-                                src="dist/img/avatar10.jpg"
+                                src="../src/assets/img/avatar10.jpg"
                                 alt="user"
                                 className="avatar-img"
                               />
@@ -472,11 +473,7 @@ function App() {
                     aria-expanded="false"
                   >
                     <div className="avatar avatar-rounded avatar-xs">
-                      <img
-                        src="dist/img/avatar12.jpg"
-                        alt="user"
-                        className="avatar-img"
-                      />
+                      <img src={avatar} alt="user" className="avatar-img" />
                     </div>
                   </a>
                   <div className="dropdown-menu dropdown-menu-end">
@@ -526,7 +523,7 @@ function App() {
                                   <div className="media-head me-2">
                                     <div className="avatar avatar-xs avatar-rounded">
                                       <img
-                                        src="dist/img/avatar12.jpg"
+                                        src="../src/assets/img/avatar12.jpg"
                                         alt="user"
                                         className="avatar-img"
                                       />
@@ -624,12 +621,12 @@ function App() {
             <a className="navbar-brand" href="index.html">
               <img
                 className="brand-img img-fluid"
-                src="dist/img/brand-sm.svg"
+                src="../src/assets/img/brand-sm.svg"
                 alt="brand"
               />
               <img
                 className="brand-img img-fluid"
-                src="dist/img/Jampack.svg"
+                src="../src/assets/img/Jampack.svg"
                 alt="brand"
               />
             </a>
@@ -1873,7 +1870,7 @@ function App() {
           <div className="footer-copy-text">
             Powered by{" "}
             <a className="brand-link" href="#">
-              <img src="dist/img/logo-light.png" alt="logo-brand" />
+              <img src="../src/assets/img/logo-light.png" alt="logo-brand" />
             </a>
           </div>
         </footer>
