@@ -4,52 +4,66 @@ Project:	Jampack
 -------------------------------------------------------------------*/
 /*Navbar*/
 .navbar {
+
 	.navbar-toggler-menu,
 	.navbar-toggler {
-		border:none;
-		padding:0;
+		border: none;
+		padding: 0;
 	}
+
 	.navbar-toggler-menu {
-		align-self:center;
-		margin-right:.625rem;
+		align-self: center;
+		margin-right: .625rem;
 	}
+
 	.navbar-brand {
 		display: -webkit-inline-box;
 		display: -ms-inline-flexbox;
 		display: inline-flex;
 	}
+
 	&.navbar-dark {
-		background:$black_2;
+		background: $black_2;
+
 		.badge {
 			&.badge-indicator {
-				border-color:$black_2;
+				border-color: $black_2;
 			}
 		}
+
 		.form-control {
 			border-color: $white;
 			color: $white;
 		}
+
 		.input-affix-wrapper.affix-border {
-			.input-prefix,.input-suffix {
+
+			.input-prefix,
+			.input-suffix {
 				border-color: $white;
 				color: $white;
 			}
 		}
+
 		.btn.btn-icon[class*="btn-flush-"] {
 			&.btn-flush-dark {
 				color: $white;
+
 				&.flush-soft-hover {
 					&:before {
-						@include background-opacity($white,0.05);
+						@include background-opacity($white, 0.05);
 					}
+
 					&:not(:disabled):not(.disabled).active,
 					&:not(:disabled):not(.disabled):active,
-					&:hover,&:focus {
+					&:hover,
+					&:focus {
 						.icon {
-							color:$white;
+							color: $white;
 						}
 					}
 				}
+
 				&.disabled,
 				&:disabled {
 					@include color-opacity($white);
@@ -57,36 +71,46 @@ Project:	Jampack
 			}
 		}
 	}
+
 	&.navbar-light {
-		background:$white;
+		background: $white;
+
 		.badge {
 			&.badge-indicator {
-				border-color:$white;
+				border-color: $white;
 			}
 		}
 	}
-} 
+}
 
 /*Nav*/
 .nav-link {
 	color: $primary;
-	&:hover,&:focus {
+	cursor: pointer;
+
+	&:hover,
+	&:focus {
 		color: $primary_light_1;
 	}
 }
+
 .nav {
 	.nav-item {
-		position:relative;
+		position: relative;
+
 		.nav-link {
 			&.no-arrow {
-				padding-right:.75rem!important;
+				padding-right: .75rem !important;
+
 				&:after {
-					display:none;
+					display: none;
 				}
 			}
+
 			&.link-with-arrow {
-				padding-right: 1.8rem!important;
-				position:relative;
+				padding-right: 1.8rem !important;
+				position: relative;
+
 				&:after {
 					content: '\f2f9';
 					font: normal normal normal 14px/1 'Material-Design-Iconic-Font';
@@ -95,121 +119,141 @@ Project:	Jampack
 					margin-left: auto;
 					position: absolute;
 					right: 1rem;
-					top:calc(50% - 8px);
+					top: calc(50% - 8px);
 					@include transform(rotate(0deg));
 					@include transition(all 0.4s ease);
 				}
 			}
 		}
-	}	
+	}
+
 	&.nav-icon {
-		> .nav-item .nav-link {
+		>.nav-item .nav-link {
 			display: -webkit-box;
 			display: -ms-flexbox;
 			display: flex;
 			-webkit-box-align: center;
 			-ms-flex-align: center;
-			align-items:center;
+			align-items: center;
 			justify-content: center;
 			-webkit-justify-content: center;
-			> .nav-icon-wrap {
+
+			>.nav-icon-wrap {
 				margin-right: .875rem;
-				font-size:1.25rem;
-				line-height:0;
-				position:relative;
+				font-size: 1.25rem;
+				line-height: 0;
+				position: relative;
 			}
 		}
+
 		&.nav-icon-top {
 			>.nav-item {
-				> .nav-link {
+				>.nav-link {
 					text-align: center;
-    				display: block;
-					> .nav-icon-wrap {
+					display: block;
+
+					>.nav-icon-wrap {
 						margin-right: 0;
-						margin-bottom:.5rem;
+						margin-bottom: .5rem;
 						display: block;
-					}	
+					}
 				}
 			}
 		}
 	}
+
 	&.nav-pills {
 		>.nav-item {
 			>.nav-link {
-				border-radius:0.5rem;
-				margin-left:.25rem;
-				margin-right:.25rem;
+				border-radius: 0.5rem;
+				margin-left: .25rem;
+				margin-right: .25rem;
+
 				&.active {
-					background-color: $primary!important;
+					background-color: $primary !important;
+
 					&.link-with-arrow {
 						&:after {
-							@include color-opacity($white,0.6);
+							@include color-opacity($white, 0.6);
 						}
 					}
+
 					&:after {
-						@include color-opacity($white,0.6);
+						@include color-opacity($white, 0.6);
 					}
 				}
 			}
 		}
-		.show > .nav-link {
+
+		.show>.nav-link {
 			background-color: transparent;
 		}
+
 		&.nav-pills-square {
-			>.nav-item >.nav-link {
-				border-radius:0;
+			>.nav-item>.nav-link {
+				border-radius: 0;
 			}
 		}
+
 		&.nav-pills-rounded {
-			>.nav-item >.nav-link {
-				border-radius:50rem;
+			>.nav-item>.nav-link {
+				border-radius: 50rem;
 			}
 		}
+
 		&.nav-pills-soft {
-			>.nav-item >.nav-link {
+			>.nav-item>.nav-link {
 				&.active {
-					background-color: $primary_light_5!important;
-					color:$primary!important;
+					background-color: $primary_light_5 !important;
+					color: $primary !important;
+
 					&.link-with-arrow {
 						&:after {
-							color:inherit;
+							color: inherit;
 						}
 					}
+
 					&:after {
-						color:inherit;
+						color: inherit;
 					}
 				}
 			}
 		}
+
 		&.nav-icon {
 			&.nav-icon-top {
 				>.nav-item {
 					>.nav-link {
-						padding-top:.95rem;
-						padding-bottom:.95rem;
+						padding-top: .95rem;
+						padding-bottom: .95rem;
 					}
 				}
 			}
 		}
 	}
+
 	&.nav-line {
 		>.nav-item {
 			>.nav-link {
-				border-bottom:1px solid transparent;
+				border-bottom: 1px solid transparent;
 				@include transition(.2s ease-in-out);
+
 				&.active {
-					border-color:$primary!important;
+					border-color: $primary !important;
 				}
 			}
 		}
 	}
+
 	&.nav-vertical {
 		-ms-flex-direction: column !important;
 		flex-direction: column !important;
+
 		.nav-item .nav-link {
 			justify-content: flex-start;
 			-webkit-justify-content: flex-start;
-			position:relative;
+			position: relative;
+
 			&[data-toggle="collapse"] {
 				&::after {
 					content: '\f2f9';
@@ -220,6 +264,7 @@ Project:	Jampack
 					@include transform(rotate(0deg));
 					@include transition(all 0.4s ease);
 				}
+
 				&[aria-expanded="true"] {
 					&::after {
 						@include transform(rotate(-180deg));
@@ -227,26 +272,30 @@ Project:	Jampack
 				}
 			}
 		}
+
 		&.nav-pills {
 			>.nav-item {
 				>.nav-link {
-					margin:.25rem 0;
+					margin: .25rem 0;
 				}
 			}
 		}
+
 		&.nav-line {
 			>.nav-item {
 				>.nav-link {
-					border-bottom:none;
-					border-left:1px solid transparent;
+					border-bottom: none;
+					border-left: 1px solid transparent;
 				}
 			}
-		}		
+		}
+
 		&.nav-separator {
-			> .nav-item {
+			>.nav-item {
 				>.nav-link {
-					padding:.75rem 1.5rem;
+					padding: .75rem 1.5rem;
 				}
+
 				&::after {
 					content: "";
 					position: absolute;
@@ -259,262 +308,329 @@ Project:	Jampack
 				}
 			}
 		}
-		
+
 	}
+
 	&.nav-dark {
 		.nav-link {
-			@include color-opacity($white,1);
-			&:hover,&:focus {
-				@include color-opacity($white,.8);
+			@include color-opacity($white, 1);
+
+			&:hover,
+			&:focus {
+				@include color-opacity($white, .8);
 			}
+
 			&.disabled {
-				@include color-opacity($white,.3);
+				@include color-opacity($white, .3);
 			}
+
 			&.active {
-				color:$primary;
+				color: $primary;
 			}
+
 			&:after {
-				@include color-opacity($white,0.3);
+				@include color-opacity($white, 0.3);
 			}
+
 			&.link-with-arrow {
 				&:after {
-					@include color-opacity($white,0.3);
+					@include color-opacity($white, 0.3);
 				}
 			}
-		}	
-		.nav-item.show .nav-link {
-			color:$white;
 		}
+
+		.nav-item.show .nav-link {
+			color: $white;
+		}
+
 		&.nav-pills {
 			>.nav-item {
 				>.nav-link.active {
 					color: $white;
-					&:hover,&:focus {
+
+					&:hover,
+					&:focus {
 						color: $white;
 					}
 				}
+
 				>.nav-link {
-					color:$white;
-					&:hover,&:focus {
-						@include background-opacity($white,.1);
+					color: $white;
+
+					&:hover,
+					&:focus {
+						@include background-opacity($white, .1);
 					}
+
 					&.disabled {
-						@include color-opacity($white,.3);
+						@include color-opacity($white, .3);
 					}
 				}
 			}
 		}
+
 		&.nav-vertical {
 			.nav-item .nav-link {
 				&[data-toggle="collapse"] {
 					&::after {
-						@include color-opacity($white,0.3);
+						@include color-opacity($white, 0.3);
 					}
 				}
-			}	
-		}	
+			}
+		}
+
 		&.nav-line {
 			.nav-item.show .nav-link {
-				color:$white;
+				color: $white;
 			}
 		}
-	}	
+	}
+
 	&.nav-light {
 		.nav-link {
-			@include color-opacity($black_2,1);
-			&:hover,&:focus {
-				@include color-opacity($black_2,.8);
+			@include color-opacity($black_2, 1);
+
+			&:hover,
+			&:focus {
+				@include color-opacity($black_2, .8);
 			}
+
 			&.disabled {
-				@include color-opacity($black_2,.3);
+				@include color-opacity($black_2, .3);
 			}
+
 			&.active {
-				color:$primary;
+				color: $primary;
 			}
+
 			&:after {
-				@include color-opacity($black_2,0.3);
+				@include color-opacity($black_2, 0.3);
 			}
+
 			&.link-with-arrow {
 				&:after {
-					@include color-opacity($black_2,0.3);
+					@include color-opacity($black_2, 0.3);
 				}
 			}
 		}
+
 		.nav-item.show .nav-link {
-			color:$black_2;
+			color: $black_2;
 		}
+
 		&.nav-vertical {
 			.nav-item .nav-link {
 				&[data-toggle="collapse"] {
 					&::after {
-						@include color-opacity($black_2,0.3);
+						@include color-opacity($black_2, 0.3);
 					}
 				}
-			}	
+			}
 		}
+
 		&.nav-pills {
 			>.nav-item {
 				>.nav-link.active {
 					color: $white;
-					&:hover,&:focus {
+
+					&:hover,
+					&:focus {
 						color: $white;
 					}
 				}
+
 				>.nav-link {
-					color:$black_2;
-					&:hover,&:focus {
-							@include background-opacity($black_2,.08);
+					color: $black_2;
+
+					&:hover,
+					&:focus {
+						@include background-opacity($black_2, .08);
 					}
+
 					&.disabled {
-						@include color-opacity($black_2,.3);
+						@include color-opacity($black_2, .3);
 					}
 				}
 			}
 		}
 	}
+
 	&.nav-sm {
-		> .nav-item .nav-link > .nav-icon-wrap {
+		>.nav-item .nav-link>.nav-icon-wrap {
 			margin-right: .875rem;
-			font-size:1rem;
+			font-size: 1rem;
 		}
+
 		.nav-link {
 			padding: .25rem 0.75rem;
 			font-size: 0.875rem;
 		}
 	}
 }
+
 .nav-tabs {
-    border-bottom: 1px solid $grey_light_3;
+	border-bottom: 1px solid $grey_light_3;
+
 	.nav-item.show .nav-link,
-	>.nav-item > .nav-link {
-		&:hover,&:focus {
-			border-color:transparent;
+	>.nav-item>.nav-link {
+
+		&:hover,
+		&:focus {
+			border-color: transparent;
 		}
+
 		&.active {
-			background-color:transparent;
-			border-color: rgba(0,0,0,0.1) rgba(0,0,0,0.1) $white;
+			background-color: transparent;
+			border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) $white;
 		}
 	}
+
 	&.nav-sm {
+
 		.nav-item.show .nav-link,
-		>.nav-item > .nav-link {
+		>.nav-item>.nav-link {
 			padding: .4rem 0.75rem;
 		}
 	}
+
 	.nav-item.show .nav-link {
-		border-color: rgba(0,0,0,0.1) rgba(0,0,0,0.1) $white;
+		border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) $white;
 	}
+
 	&.nav-pills {
-		border-bottom:0;
+		border-bottom: 0;
+
 		>.nav-item {
-			margin-bottom:0;
+			margin-bottom: 0;
+
 			>.nav-link {
-				border:none!important;
+				border: none !important;
 			}
 		}
 	}
+
 	&.nav-light {
-		>.nav-item > .nav-link { 
+		>.nav-item>.nav-link {
 			&.active {
-				background:$white;
-				border-color: rgba(0,0,0,0.1) rgba(0,0,0,0.1) $white;
+				background: $white;
+				border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) $white;
 			}
 		}
+
 		.nav-item.show .nav-link {
-			border-color: rgba(0,0,0,0.1) rgba(0,0,0,0.1) $white;
+			border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) $white;
 		}
 	}
+
 	&.nav-dark {
-		@include border-opacity($white,0.1);
-		>.nav-item > .nav-link { 
+		@include border-opacity($white, 0.1);
+
+		>.nav-item>.nav-link {
 			&.active {
-				background:$white;
-				border-color: rgba(255,255,255,0.1) rgba(255,255,255,0.1) $white;
+				background: $white;
+				border-color: rgba(255, 255, 255, 0.1) rgba(255, 255, 255, 0.1) $white;
 			}
 		}
+
 		.nav-item.show .nav-link {
-			border-color: rgba(255,255,255,0.1) rgba(255,255,255,0.1) $white;
+			border-color: rgba(255, 255, 255, 0.1) rgba(255, 255, 255, 0.1) $white;
 		}
 	}
+
 	&.nav-line {
-		border-bottom:0;
+		border-bottom: 0;
+
 		>.nav-item {
-			margin-bottom:0;
+			margin-bottom: 0;
+
 			>.nav-link {
-				background:transparent;
-				border-left:0;
-				border-top:0;
-				border-right:0;
+				background: transparent;
+				border-left: 0;
+				border-top: 0;
+				border-right: 0;
+
 				&.active {
-					background:transparent;
+					background: transparent;
 				}
 			}
 		}
 	}
 }
+
 .tab-content {
-	margin-top:1rem;
+	margin-top: 1rem;
 }
+
 .nav-segmented-tabs {
 	display: -ms-flexbox;
-	display:flex;
-	border-bottom:none;
+	display: flex;
+	border-bottom: none;
+
 	>.nav-item {
-		margin-right:-1px;
+		margin-right: -1px;
+
 		&:first-child {
 			.nav-link {
-				border-top-left-radius:0.5rem;
-				border-bottom-left-radius:0.5rem;
+				border-top-left-radius: 0.5rem;
+				border-bottom-left-radius: 0.5rem;
 			}
 		}
+
 		&:last-child {
 			.nav-link {
-				border-top-right-radius:0.5rem;
-				border-bottom-right-radius:0.5rem;
+				border-top-right-radius: 0.5rem;
+				border-bottom-right-radius: 0.5rem;
 			}
 		}
+
 		>.nav-link {
-			border:1px solid $grey_light_3!important;
-			border-radius:0;
-			text-align:center;
-			background:transparent;
-			height:100%;
+			border: 1px solid $grey_light_3 !important;
+			border-radius: 0;
+			text-align: center;
+			background: transparent;
+			height: 100%;
+
 			&.active {
-				color: $white!important;
-				background: $primary!important;
-				border-color: $primary!important;
+				color: $white !important;
+				background: $primary !important;
+				border-color: $primary !important;
 			}
 		}
 	}
+
 	&.segmented-tabs-rounded {
 		>.nav-item {
 			&:first-child {
 				.nav-link {
-					border-top-left-radius:50px;
-					border-bottom-left-radius:50px;
+					border-top-left-radius: 50px;
+					border-bottom-left-radius: 50px;
 				}
 			}
+
 			&:last-child {
 				.nav-link {
-					border-top-right-radius:50px;
-					border-bottom-right-radius:50px;
+					border-top-right-radius: 50px;
+					border-bottom-right-radius: 50px;
 				}
 			}
 		}
 	}
+
 	&.segmented-tabs-square {
 		>.nav-item {
 			>.nav-link {
-				border-radius:0;
+				border-radius: 0;
 			}
 		}
 	}
+
 	&.segmented-tabs-filled {
 		>.nav-item {
 			margin-right: 0;
+
 			.nav-link {
-				border:none!important;
-				background:$grey_light_5;
+				border: none !important;
+				background: $grey_light_5;
 			}
 		}
 	}
@@ -522,24 +638,27 @@ Project:	Jampack
 	&.nav-dark {
 		>.nav-item {
 			>.nav-link {
-				border-color:rgba(255,255,255,.15)!important;
+				border-color: rgba(255, 255, 255, .15) !important;
 			}
+
 			&.show {
 				>.nav-link {
-					background:transparent;
-					color:white;
+					background: transparent;
+					color: white;
 				}
 			}
 		}
+
 		&.segmented-tabs-filled {
 			>.nav-item {
 				.nav-link {
-					@include background-opacity($white,0.05);
+					@include background-opacity($white, 0.05);
 				}
 			}
 		}
 	}
 }
+
 .nav-header-bold {
 	padding: 1.5rem 0 .5rem 0;
 	width: 240px;
@@ -547,14 +666,15 @@ Project:	Jampack
 	text-transform: uppercase;
 	font-weight: 600;
 	color: $primary;
-} 
+}
 
 /*Section Nav*/
-.hk-wrapper{
+.hk-wrapper {
 	&[data-aside="fixed"] {
 		.hk-pg-wrapper {
-			margin-right:180px;
+			margin-right: 180px;
 		}
+
 		.hk-aside {
 			position: fixed;
 			top: 65px;
@@ -564,12 +684,14 @@ Project:	Jampack
 			z-index: 1;
 			background: $white;
 			border-left: 1px solid $grey_light_3;
-			bottom:0;	
+			bottom: 0;
+
 			.nicescroll-bar {
 				padding: 1.5rem;
 			}
 		}
 	}
+
 	&[data-aside="sticky"] {
 		.hk-aside {
 			position: sticky;
@@ -580,6 +702,7 @@ Project:	Jampack
 			margin-top: 3rem;
 		}
 	}
+
 	.nav-toc {
 		.nav-header {
 			font-size: .75rem;
@@ -587,22 +710,29 @@ Project:	Jampack
 			font-weight: 600;
 			color: $grey;
 		}
+
 		.nav {
 			margin: 1rem 0;
 			font-size: .875rem;
 			flex-wrap: nowrap;
 			border-left: 1px solid;
 			border-color: $grey_light_3;
+
 			.nav-item {
 				margin-bottom: .25rem;
+
 				&:last-child {
 					margin-bottom: 0;
 				}
+
 				a.nav-link {
-					@include color-opacity($black_2,1);
-					&:hover,&:focus {
-						@include color-opacity($black_2,.8);
+					@include color-opacity($black_2, 1);
+
+					&:hover,
+					&:focus {
+						@include color-opacity($black_2, .8);
 					}
+
 					padding: 0 0 0 1rem;
 					display: block;
 					margin-left: -1px;
@@ -610,6 +740,7 @@ Project:	Jampack
 					white-space: nowrap;
 					text-overflow: ellipsis;
 					border-left: 1px solid transparent;
+
 					&.active {
 						color: $primary;
 						border-color: $primary;
@@ -619,25 +750,26 @@ Project:	Jampack
 		}
 	}
 }
+
 @media (max-width: 767px) {
 	.hk-wrapper[data-aside="fixed"] {
 		.hk-pg-wrapper {
-			margin-right:0;
+			margin-right: 0;
 		}
+
 		.hk-aside {
-			display:none;
+			display: none;
 		}
 	}
 }
+
 .toc-wrapper {
 	.nav.nav-vertical {
 		.nav-item {
-			.nav-link{
+			.nav-link {
 				font-size: 0.875rem;
 				padding: 0.125rem 0;
 			}
 		}
 	}
 }
-
-

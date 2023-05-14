@@ -7,6 +7,7 @@ Project:	Jampack
 	.hk-pg-wrapper {
 		@include transition(all 0.2s ease);
 	}
+
 	.hk-menu {
 		display: -webkit-box;
 		display: -ms-flexbox;
@@ -17,17 +18,19 @@ Project:	Jampack
 		bottom: 0;
 		width: 270px;
 		margin-left: 0;
-		z-index:1032;
+		z-index: 1032;
 		border-right: 1px solid $grey_light_4;
 		@include transition(all 0.2s ease);
-		
+
 		>.nicescroll-bar {
 			overflow: auto;
 			flex: 1 1 auto;
 		}
+
 		.menu-content-wrap {
-			padding:1.5rem;
+			padding: 1.5rem;
 			position: relative;
+
 			.menu-group {
 				.nav-header {
 					padding: 0 0 .5rem 0;
@@ -35,31 +38,37 @@ Project:	Jampack
 					color: $grey;
 					font-weight: 500;
 				}
+
 				.navbar-nav {
 					.nav-item {
 						.nav-link {
-							position:relative;
+							position: relative;
 							display: -webkit-box;
 							display: -ms-flexbox;
 							display: flex;
 							-webkit-box-align: center;
 							-ms-flex-align: center;
 							align-items: center;
-							padding:.5rem 1rem;
-							margin:0 -1rem;
+							padding: .5rem 1rem;
+							margin: 0 -1rem;
 							white-space: nowrap;
-							>*{
+							cursor: pointer;
+
+							>* {
 								@include transition(transform .25s ease);
 							}
+
 							.nav-icon-wrap {
 								display: -webkit-box;
 								display: -ms-flexbox;
-								display:flex;
+								display: flex;
 								margin-right: .875rem;
+
 								>*:not(.badge) {
-									font-size:1.5rem;
+									font-size: 1.5rem;
 								}
 							}
+
 							&[data-bs-toggle="collapse"] {
 								&::after {
 									position: absolute;
@@ -72,35 +81,41 @@ Project:	Jampack
 									@include transform(rotate(0deg));
 									@include transition(all 0.2s ease);
 								}
+
 								&[aria-expanded="true"] {
 									&::after {
 										@include transform(rotate(-180deg));
 									}
 								}
 							}
+
 							&:hover {
 								>* {
 									@include transform(translateX(5px));
 								}
 							}
 						}
+
 						&.active {
 							>.nav-link {
-								color: $primary!important;
+								color: $primary !important;
 							}
 						}
-					}	
-					> .nav-item {
+					}
+
+					>.nav-item {
 						&.active {
 							>.nav-link {
-								@include background-opacity($primary,0.15);
-								color: $primary!important;
+								@include background-opacity($primary, 0.15);
+								color: $primary !important;
 								border-radius: 0.5rem;
 							}
 						}
-						> ul {
-							position:relative;
+
+						>ul {
+							position: relative;
 							padding: 0.5rem 0;
+
 							&:after {
 								content: "";
 								width: 1px;
@@ -109,11 +124,12 @@ Project:	Jampack
 								left: 10px;
 								top: 0;
 								bottom: 0;
-								margin:auto;
+								margin: auto;
 							}
 						}
 					}
 				}
+
 				.nav-children {
 					.nav-item {
 						.nav-link {
@@ -121,26 +137,30 @@ Project:	Jampack
 							padding: 0.15rem 0 0.15rem 1.4rem;
 							margin: 0 0 0 1rem;
 							@include transition(all .25s ease);
+
 							&[data-bs-toggle="collapse"] {
 								&::after {
 									right: 0;
 								}
-							}	
+							}
 						}
-					}    	
+					}
+
 					.nav-children {
 						.nav-item {
 							.nav-link {
 								padding: 0.15rem 0 0.15rem 2rem;
 							}
-						} 
+						}
 					}
 				}
 			}
+
 			.menu-gap {
 				height: 25px;
 			}
 		}
+
 		.menu-header {
 			padding: 0.5rem 1.1875rem;
 			display: -webkit-box;
@@ -152,17 +172,20 @@ Project:	Jampack
 			-ms-flex-align: center;
 			align-items: center;
 			overflow: hidden;
+
 			.navbar-toggle {
-				flex-shrink: 0;	
+				flex-shrink: 0;
 			}
+
 			>span {
 				display: -webkit-box;
 				display: -ms-flexbox;
 				display: flex;
 				flex-shrink: 0;
-    			align-items: center;
+				align-items: center;
 				flex-grow: 1;
 				justify-content: space-between;
+
 				.navbar-brand {
 					.brand-img {
 						&:last-child {
@@ -172,10 +195,11 @@ Project:	Jampack
 				}
 			}
 		}
+
 		/*Sidebar fixednav*/
 		.bottom-nav {
 			flex: 0 0 auto;
-			padding-bottom: .5rem;	
+			padding-bottom: .5rem;
 		}
 
 		/*Horizontal Scrollbar*/
@@ -183,21 +207,26 @@ Project:	Jampack
 			display: none;
 		}
 	}
+
 	&[data-layout-style="default"] {
 		.hk-pg-wrapper {
 			margin-left: 0;
 		}
+
 		.hk-navbar {
-			left:0;
+			left: 0;
 		}
+
 		.hk-menu {
 			left: -270px;
 		}
 	}
+
 	&[data-layout-style="collapsed"] {
 		.hk-menu {
 			left: 0;
 		}
+
 		.hk-menu-backdrop {
 			position: fixed;
 			left: 0;
@@ -206,31 +235,35 @@ Project:	Jampack
 			top: 0;
 			z-index: 1031;
 			@include transition(all 0.25s ease);
-			@include background-opacity($black_2,.5);
+			@include background-opacity($black_2, .5);
 			opacity: 1;
 			height: auto;
 			width: auto;
 			visibility: visible;
 		}
 	}
+
 	&[data-menu="light"] {
 		.hk-menu {
-			background:$white;
+			background: $white;
+
 			.menu-content-wrap {
 				.menu-group {
 					.navbar-nav {
 						.nav-item {
 							.nav-link {
-								color:$black_2;
+								color: $black_2;
+
 								&[data-bs-toggle="collapse"] {
 									&::after {
-										@include color-opacity($black_2,0.3);
+										@include color-opacity($black_2, 0.3);
 									}
 								}
 							}
-						}	
-						> .nav-item {
-							> ul {
+						}
+
+						>.nav-item {
+							>ul {
 								&:after {
 									background: $grey_light_3;
 								}
@@ -241,24 +274,28 @@ Project:	Jampack
 			}
 		}
 	}
+
 	&[data-menu="dark"] {
 		.hk-menu {
-			background:$black_2;
+			background: $black_2;
+
 			.menu-content-wrap {
 				.menu-group {
 					.navbar-nav {
 						.nav-item {
 							.nav-link {
-								color:$white;
+								color: $white;
+
 								&[data-bs-toggle="collapse"] {
 									&::after {
-										@include color-opacity($white,0.3);
+										@include color-opacity($white, 0.3);
 									}
 								}
 							}
-						}	
-						> .nav-item {
-							> ul {
+						}
+
+						>.nav-item {
+							>ul {
 								&:after {
 									background: $grey_light_3;
 								}
@@ -269,54 +306,67 @@ Project:	Jampack
 			}
 		}
 	}
-}	
+}
+
 @media (min-width: 1200px) {
 	.hk-wrapper[data-layout="vertical"] {
 		&[data-layout-style="default"] {
 			.hk-pg-wrapper {
 				margin-left: 270px;
 			}
+
 			.hk-navbar {
-				left:270px;
+				left: 270px;
 			}
+
 			.hk-menu {
 				left: 0;
 			}
 		}
+
 		&[data-layout-style="collapsed"] {
 			.hk-pg-wrapper {
 				margin-left: 72px;
 			}
+
 			.hk-navbar {
-				left:72px;
+				left: 72px;
 			}
+
 			.hk-menu {
 				width: 72px;
+
 				.menu-content-wrap {
 					>.callout {
 						display: none;
 					}
+
 					.menu-group {
 						.nav-header {
 							display: none;
 						}
-						.navbar-nav > .nav-item > .nav-link  {
-							> *:not(.nav-icon-wrap) {
+
+						.navbar-nav>.nav-item>.nav-link {
+							>*:not(.nav-icon-wrap) {
 								visibility: hidden;
 								flex-shrink: 0;
 							}
+
 							&[data-bs-toggle="collapse"]::after {
 								right: -1.5rem;
 							}
 						}
+
 						.collapse.show {
 							display: none;
 						}
 					}
+
 					.menu-gap {
 						display: none;
 					}
-				} 
+				}
+
 				.menu-header {
 					>span {
 						.navbar-brand {
@@ -328,40 +378,49 @@ Project:	Jampack
 						}
 					}
 				}
+
 				.navbar-toggle {
 					@include transform(rotate(180deg));
 				}
 			}
+
 			&[data-hover="active"] {
 				.hk-menu:hover {
 					width: 270px;
+
 					.menu-content-wrap {
 						>.callout {
 							display: -webkit-box;
 							display: -ms-flexbox;
 							display: flex;
 						}
+
 						.menu-group {
 							.nav-header {
 								display: block;
 							}
-							.navbar-nav > .nav-item > .nav-link  {
-								> *:not(.nav-icon-wrap) {
+
+							.navbar-nav>.nav-item>.nav-link {
+								>*:not(.nav-icon-wrap) {
 									visibility: visible;
 								}
+
 								&[data-bs-toggle="collapse"]::after {
 									right: 1rem;
 								}
 							}
+
 							.collapse.show {
 								display: -ms-flexbox;
-								display:flex;
+								display: flex;
 							}
-						} 
+						}
+
 						.menu-gap {
 							display: block;
 						}
-					} 
+					}
+
 					.menu-header {
 						>span {
 							.navbar-brand {
@@ -375,6 +434,7 @@ Project:	Jampack
 					}
 				}
 			}
+
 			.hk-menu-backdrop {
 				opacity: 0;
 				height: 0;
@@ -384,4 +444,3 @@ Project:	Jampack
 		}
 	}
 }
-	
