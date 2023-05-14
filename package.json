@@ -14,7 +14,8 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.11.1",
-    "sass": "^1.62.1"
+    "sass": "^1.62.1",
+    "simplebar-react": "^3.2.4"
   },
   "devDependencies": {
     "@amcharts/amcharts4": "^4.9.27",
@@ -79,7 +80,6 @@
     "pdfmake": "^0.1.72",
     "pickr-widget": "^0.2.4",
     "select2": "^4.0.13",
-    "simplebar": "^5.2.1",
     "sweetalert2": "^9.10.9",
     "tinymce": "^5.4.2",
     "typescript": "^5.0.2",
