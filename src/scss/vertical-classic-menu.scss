@@ -380,6 +380,7 @@ Project:	Jampack
 				}
 
 				.navbar-toggle {
+					margin-left: 20px;
 					@include transform(rotate(180deg));
 				}
 			}

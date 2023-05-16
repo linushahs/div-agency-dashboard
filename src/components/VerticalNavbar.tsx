@@ -1,7 +1,15 @@
 import { useState } from "react";
 import SimpleBar from "simplebar-react";
 
-export default function VerticalNavbar() {
+type VerticalNavbarProps = {
+  navLayout: string;
+  setNavLayout: (type: string) => void;
+};
+
+export default function VerticalNavbar({
+  navLayout,
+  setNavLayout,
+}: VerticalNavbarProps) {
   const [showContact, setShowContact] = useState(false);
   const [showInvoice, setShowInvoice] = useState(false);
 
@@ -11,7 +19,7 @@ export default function VerticalNavbar() {
         {/* <!-- Brand --> */}
         <div className="menu-header">
           <span>
-            <a className="navbar-brand" href="index.html">
+            <a className="navbar-brand" href="/">
               <img
                 className="brand-img img-fluid"
                 src="../src/assets/img/brand-sm.svg"
@@ -23,7 +31,14 @@ export default function VerticalNavbar() {
                 alt="brand"
               />
             </a>
-            <button className="btn btn-icon btn-rounded btn-flush-dark flush-soft-hover navbar-toggle">
+            <button
+              className="btn btn-icon btn-rounded btn-flush-dark flush-soft-hover navbar-toggle"
+              onClick={() =>
+                setNavLayout(
+                  navLayout === "collapsed" ? "default" : "collapsed"
+                )
+              }
+            >
               <span className="icon">
                 <span className="svg-icon fs-5">
                   <svg

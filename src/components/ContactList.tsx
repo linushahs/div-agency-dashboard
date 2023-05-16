@@ -33,12 +33,13 @@ import SimpleBar from "simplebar-react";
 
 export default function ContactList() {
   const [toggleSidebar, setToggleSidebar] = useState(false);
+  const [navLayout, setNavLayout] = useState("collapsed");
 
   return (
     <div
       className="hk-wrapper"
       data-layout="vertical"
-      data-layout-style="collapsed"
+      data-layout-style={navLayout}
       data-menu="light"
       data-footer="simple"
       data-hover="active"
@@ -48,7 +49,7 @@ export default function ContactList() {
       {/* <!-- /Top Navbar --> */}
 
       {/* <!-- Vertical Nav --> */}
-      <VerticalNavbar />
+      <VerticalNavbar setNavLayout={setNavLayout} navLayout={navLayout} />
       {/* <!-- /Vertical Nav --> */}
 
       {/* <!-- Main Content --> */}
