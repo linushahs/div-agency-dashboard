@@ -1,10 +1,9 @@
 import clsx from "clsx";
-import ContactListItem from "./ContactListItem";
-import TopNavbar from "./TopNavbar";
-import VerticalNavbar from "./VerticalNavbar";
 import { Dropdown } from "react-bootstrap";
+import ContactListItem from "./ContactListItem";
 
 //import icons
+import { useState } from "react";
 import {
   Archive,
   Book,
@@ -28,30 +27,15 @@ import {
   Upload,
   Users,
 } from "react-feather";
-import { useState } from "react";
 import SimpleBar from "simplebar-react";
+import Layout from "../layout/Layout";
 
 export default function ContactList() {
   const [toggleSidebar, setToggleSidebar] = useState(false);
   const [navLayout, setNavLayout] = useState("collapsed");
 
   return (
-    <div
-      className="hk-wrapper"
-      data-layout="vertical"
-      data-layout-style={navLayout}
-      data-menu="light"
-      data-footer="simple"
-      data-hover="active"
-    >
-      {/* <!-- Top Navbar --> */}
-      <TopNavbar />
-      {/* <!-- /Top Navbar --> */}
-
-      {/* <!-- Vertical Nav --> */}
-      <VerticalNavbar setNavLayout={setNavLayout} navLayout={navLayout} />
-      {/* <!-- /Vertical Nav --> */}
-
+    <Layout navLayout={navLayout} setNavLayout={setNavLayout}>
       {/* <!-- Main Content --> */}
       <div className="hk-pg-wrapper pb-0">
         {/* <!-- Page Body --> */}
@@ -1019,6 +1003,6 @@ export default function ContactList() {
         {/* <!-- /Page Body --> */}
       </div>
       {/* <!-- /Main Content --> */}
-    </div>
+    </Layout>
   );
 }

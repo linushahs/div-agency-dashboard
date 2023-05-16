@@ -3,7 +3,8 @@ import ReactDOM from "react-dom/client";
 import App from "./App.tsx";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import ErrorPage from "./404.tsx";
-import ContactList from "./components/ContactList.tsx";
+import ContactList from "./features/ContactList.tsx";
+import EditContact from "./features/EditContact.tsx";
 
 const router = createBrowserRouter([
   {
@@ -14,6 +15,11 @@ const router = createBrowserRouter([
   {
     path: "/contact",
     element: <ContactList />,
+    errorElement: <ErrorPage />,
+  },
+  {
+    path: "/edit-contact",
+    element: <EditContact />,
     errorElement: <ErrorPage />,
   },
 ]);
