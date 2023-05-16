@@ -8,7 +8,6 @@ import {
   Trash2,
 } from "react-feather";
 import { Dropdown } from "react-bootstrap";
-import Button from "react-bootstrap/Button";
 
 export default function ContactListItem() {
   return (

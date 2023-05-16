@@ -1,29 +1,39 @@
-import { useEffect } from "react";
+import clsx from "clsx";
 import ContactListItem from "./ContactListItem";
 import TopNavbar from "./TopNavbar";
 import VerticalNavbar from "./VerticalNavbar";
-import $ from "jquery";
+import { Dropdown } from "react-bootstrap";
 
 //import icons
 import {
-  Inbox,
-  Star,
   Archive,
+  Book,
+  ChevronDown,
+  ChevronUp,
+  Download,
   Edit,
-  Trash2,
-  List,
+  ExternalLink,
   Grid,
+  Inbox,
+  List,
+  MoreVertical,
+  Plus,
+  Printer,
+  RefreshCw,
   Server,
   Settings,
-  MoreVertical,
   Slash,
-  ExternalLink,
-  RefreshCw,
-  ChevronUp,
-  ChevronDown,
+  Star,
+  Trash2,
+  Upload,
+  Users,
 } from "react-feather";
+import { useState } from "react";
+import SimpleBar from "simplebar-react";
 
 export default function ContactList() {
+  const [toggleSidebar, setToggleSidebar] = useState(false);
+
   return (
     <div
       className="hk-wrapper"
@@ -45,9 +55,14 @@ export default function ContactList() {
       <div className="hk-pg-wrapper pb-0">
         {/* <!-- Page Body --> */}
         <div className="hk-pg-body py-0">
-          <div className="contactapp-wrap">
+          <div
+            className={clsx(
+              toggleSidebar && "contactapp-sidebar-toggle",
+              "contactapp-wrap"
+            )}
+          >
             <nav className="contactapp-sidebar">
-              <div data-simplebar className="nicescroll-bar">
+              <SimpleBar style={{ height: "84vh" }}>
                 <div className="menu-content-wrap">
                   <button
                     type="button"
@@ -118,7 +133,7 @@ export default function ContactList() {
                         <a className="nav-link" href="">
                           <span className="nav-icon-wrap">
                             <span className="feather-icon">
-                              <i data-feather="upload"></i>
+                              <Upload />
                             </span>
                           </span>
                           <span className="nav-link-text">Export</span>
@@ -128,7 +143,7 @@ export default function ContactList() {
                         <a className="nav-link" href="">
                           <span className="nav-icon-wrap">
                             <span className="feather-icon">
-                              <i data-feather="download"></i>
+                              <Download />
                             </span>
                           </span>
                           <span className="nav-link-text">Import</span>
@@ -138,7 +153,7 @@ export default function ContactList() {
                         <a className="nav-link" href="">
                           <span className="nav-icon-wrap">
                             <span className="feather-icon">
-                              <i data-feather="printer"></i>
+                              <Printer />
                             </span>
                           </span>
                           <span className="nav-link-text">Print</span>
@@ -163,7 +178,7 @@ export default function ContactList() {
                         data-bs-original-title="Add Label"
                       >
                         <span className="feather-icon">
-                          <i data-feather="plus"></i>
+                          <Plus />
                         </span>
                       </span>
                     </a>
@@ -244,8 +259,8 @@ export default function ContactList() {
                     </a>
                   </div>
                 </div>
-              </div>
-              {/* <!--Sidebar Fixnav--> */}
+              </SimpleBar>
+              {/* <!--Sidebar Fixnav start--> */}
               <div className="contactapp-fixednav">
                 <div className="hk-toolbar">
                   <ul className="nav nav-light">
@@ -260,7 +275,7 @@ export default function ContactList() {
                       >
                         <span className="icon">
                           <span className="feather-icon">
-                            <i data-feather="settings"></i>
+                            <Settings />
                           </span>
                         </span>
                       </a>
@@ -276,7 +291,7 @@ export default function ContactList() {
                       >
                         <span className="icon">
                           <span className="feather-icon">
-                            <i data-feather="archive"></i>
+                            <Archive />
                           </span>
                         </span>
                       </a>
@@ -292,7 +307,7 @@ export default function ContactList() {
                       >
                         <span className="icon">
                           <span className="feather-icon">
-                            <i data-feather="book"></i>
+                            <Book />
                           </span>
                         </span>
                       </a>
@@ -300,111 +315,117 @@ export default function ContactList() {
                   </ul>
                 </div>
               </div>
-              {/* <!--/ Sidebar Fixnav--> */}
+              {/* <!--/ Sidebar Fixnav end--> */}
             </nav>
             <div className="contactapp-content">
               <div className="contactapp-detail-wrap">
                 <header className="contact-header">
                   <div className="d-flex align-items-center">
-                    <div className="dropdown">
-                      <a
-                        className="contactapp-title dropdown-toggle link-dark"
-                        data-bs-toggle="dropdown"
-                        href="#"
-                        role="button"
-                        aria-haspopup="true"
-                        aria-expanded="false"
-                      >
+                    {/* Contact dropdown -----------------------> */}
+                    {/* --------------------------------------->  */}
+                    <Dropdown>
+                      <Dropdown.Toggle className="contactapp-title" href="#">
                         <h1>Contacts</h1>
-                      </a>
-                      <div className="dropdown-menu">
-                        <a className="dropdown-item" href="#">
+                      </Dropdown.Toggle>
+                      <Dropdown.Menu className="dropdown-menu">
+                        <Dropdown.Item className="dropdown-item" href="#">
                           <span className="feather-icon dropdown-icon">
-                            <i data-feather="users"></i>
+                            <Users />
                           </span>
                           <span>All Contacts</span>
-                        </a>
-                        <a className="dropdown-item" href="#">
+                        </Dropdown.Item>
+                        <Dropdown.Item className="dropdown-item" href="#">
                           <span className="feather-icon dropdown-icon">
-                            <i data-feather="star"></i>
+                            <Star />
                           </span>
                           <span>Important</span>
-                        </a>
-                        <a className="dropdown-item" href="#">
+                        </Dropdown.Item>
+                        <Dropdown.Item className="dropdown-item" href="#">
                           <span className="feather-icon dropdown-icon">
-                            <i data-feather="archive"></i>
+                            <Archive />
                           </span>
                           <span>Archive</span>
-                        </a>
-                        <a className="dropdown-item" href="#">
+                        </Dropdown.Item>
+                        <Dropdown.Item className="dropdown-item" href="#">
                           <span className="feather-icon dropdown-icon">
-                            <i data-feather="edit"></i>
+                            <Edit />
                           </span>
                           <span>Pending</span>
-                        </a>
-                        <a className="dropdown-item" href="#">
+                        </Dropdown.Item>
+                        <Dropdown.Item className="dropdown-item" href="#">
                           <span className="feather-icon dropdown-icon">
-                            <i data-feather="trash-2"></i>
+                            <Trash2 />
                           </span>
                           <span>Deleted</span>
-                        </a>
-                      </div>
-                    </div>
-                    <div className="dropdown ms-3">
-                      <button
+                        </Dropdown.Item>
+                      </Dropdown.Menu>
+                    </Dropdown>
+
+                    {/* Create New dropdown --------------------->  */}
+                    {/* ------------------------------------------> */}
+                    <Dropdown className="ms-3">
+                      <Dropdown.Toggle
                         className="btn btn-sm btn-outline-secondary flex-shrink-0 dropdown-toggle d-lg-inline-block d-none"
                         data-bs-toggle="dropdown"
                       >
                         Create New
-                      </button>
-                      <div className="dropdown-menu">
-                        <a className="dropdown-item" href="#">
+                      </Dropdown.Toggle>
+                      <Dropdown.Menu className="dropdown-menu">
+                        <Dropdown.Item className="dropdown-item" href="#">
                           Add New Contact
-                        </a>
-                        <a className="dropdown-item" href="#">
+                        </Dropdown.Item>
+                        <Dropdown.Item className="dropdown-item" href="#">
                           Add New Department
-                        </a>
-                        <a className="dropdown-item" href="#">
+                        </Dropdown.Item>
+                        <Dropdown.Item className="dropdown-item" href="#">
                           Add Category
-                        </a>
-                        <a className="dropdown-item" href="#">
+                        </Dropdown.Item>
+                        <Dropdown.Item className="dropdown-item" href="#">
                           Add New Tag
-                        </a>
-                      </div>
-                    </div>
+                        </Dropdown.Item>
+                      </Dropdown.Menu>
+                    </Dropdown>
                   </div>
-                  <div className="contact-options-wrap">
-                    <a
+
+                  {/* List view dropdown ----------------->  */}
+                  {/* ------------------------------------> */}
+                  <Dropdown className="contact-options-wrap">
+                    <Dropdown.Toggle
                       className="btn btn-icon btn-flush-dark flush-soft-hover dropdown-toggle no-caret active"
                       href="#"
-                      data-bs-toggle="dropdown"
                     >
                       <span className="icon">
                         <span className="feather-icon">
                           <List />
                         </span>
                       </span>
-                    </a>
-                    <div className="dropdown-menu dropdown-menu-end">
-                      <a className="dropdown-item active" href="contact.html">
+                    </Dropdown.Toggle>
+                    <Dropdown.Menu className="dropdown-menu dropdown-menu-end">
+                      <Dropdown.Item
+                        className="dropdown-item active"
+                        href="contact.html"
+                      >
                         <span className="feather-icon dropdown-icon">
                           <List />
                         </span>
                         <span>List View</span>
-                      </a>
-                      <a className="dropdown-item" href="contact-cards.html">
+                      </Dropdown.Item>
+                      <Dropdown.Item
+                        className="dropdown-item"
+                        href="contact-cards.html"
+                      >
                         <span className="feather-icon dropdown-icon">
                           <Grid />
                         </span>
                         <span>Grid View</span>
-                      </a>
-                      <a className="dropdown-item" href="#">
+                      </Dropdown.Item>
+                      <Dropdown.Item className="dropdown-item" href="#">
                         <span className="feather-icon dropdown-icon">
                           <Server />
                         </span>
                         <span>Compact View</span>
-                      </a>
-                    </div>
+                      </Dropdown.Item>
+                    </Dropdown.Menu>
                     <a
                       className="btn btn-icon btn-flush-dark btn-rounded flush-soft-hover no-caret d-sm-inline-block d-none"
                       href="#"
@@ -516,8 +537,14 @@ export default function ContactList() {
                         </span>
                       </span>
                     </a>
-                  </div>
-                  <div className="hk-sidebar-togglable"></div>
+                  </Dropdown>
+                  <div
+                    className={clsx(
+                      toggleSidebar && "active",
+                      "hk-sidebar-togglable"
+                    )}
+                    onClick={() => setToggleSidebar(!toggleSidebar)}
+                  ></div>
                 </header>
                 <div className="contact-body">
                   <div data-simplebar className="nicescroll-bar">

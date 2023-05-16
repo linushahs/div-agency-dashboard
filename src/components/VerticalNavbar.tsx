@@ -51,7 +51,7 @@ export default function VerticalNavbar() {
         </div>
         {/* <!-- /Brand --> */}
         {/* <!-- Main Menu --> */}
-        <SimpleBar data-simplebar>
+        <SimpleBar style={{ height: "100%" }}>
           <div className="menu-content-wrap">
             <div className="menu-group">
               <ul className="navbar-nav flex-column">
