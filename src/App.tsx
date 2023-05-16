@@ -1,3 +1,4 @@
+import Contact from "./components/ContactList";
 import TopNavbar from "./components/TopNavbar";
 import VerticalNavbar from "./components/VerticalNavbar";
 import "./scss/style.scss";

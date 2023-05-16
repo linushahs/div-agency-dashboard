@@ -1,0 +1,996 @@
+import { useEffect } from "react";
+import ContactListItem from "./ContactListItem";
+import TopNavbar from "./TopNavbar";
+import VerticalNavbar from "./VerticalNavbar";
+import $ from "jquery";
+
+//import icons
+import {
+  Inbox,
+  Star,
+  Archive,
+  Edit,
+  Trash2,
+  List,
+  Grid,
+  Server,
+  Settings,
+  MoreVertical,
+  Slash,
+  ExternalLink,
+  RefreshCw,
+  ChevronUp,
+  ChevronDown,
+} from "react-feather";
+
+export default function ContactList() {
+  return (
+    <div
+      className="hk-wrapper"
+      data-layout="vertical"
+      data-layout-style="collapsed"
+      data-menu="light"
+      data-footer="simple"
+      data-hover="active"
+    >
+      {/* <!-- Top Navbar --> */}
+      <TopNavbar />
+      {/* <!-- /Top Navbar --> */}
+
+      {/* <!-- Vertical Nav --> */}
+      <VerticalNavbar />
+      {/* <!-- /Vertical Nav --> */}
+
+      {/* <!-- Main Content --> */}
+      <div className="hk-pg-wrapper pb-0">
+        {/* <!-- Page Body --> */}
+        <div className="hk-pg-body py-0">
+          <div className="contactapp-wrap">
+            <nav className="contactapp-sidebar">
+              <div data-simplebar className="nicescroll-bar">
+                <div className="menu-content-wrap">
+                  <button
+                    type="button"
+                    className="btn btn-primary btn-rounded btn-block mb-4"
+                    data-bs-toggle="modal"
+                    data-bs-target="#add_new_contact"
+                  >
+                    Add new contact
+                  </button>
+                  <div className="menu-group">
+                    <ul className="nav nav-light navbar-nav flex-column">
+                      <li className="nav-item active">
+                        <a className="nav-link" href="">
+                          <span className="nav-icon-wrap">
+                            <span className="feather-icon">
+                              <Inbox />
+                            </span>
+                          </span>
+                          <span className="nav-link-text">All Contacts</span>
+                        </a>
+                      </li>
+                      <li className="nav-item">
+                        <a className="nav-link" href="">
+                          <span className="nav-icon-wrap">
+                            <span className="feather-icon">
+                              <Star />
+                            </span>
+                          </span>
+                          <span className="nav-link-text">Important</span>
+                        </a>
+                      </li>
+                      <li className="nav-item">
+                        <a className="nav-link" href="">
+                          <span className="nav-icon-wrap">
+                            <span className="feather-icon">
+                              <Archive />
+                            </span>
+                          </span>
+                          <span className="nav-link-text">Archive</span>
+                        </a>
+                      </li>
+                      <li className="nav-item">
+                        <a className="nav-link" href="">
+                          <span className="nav-icon-wrap">
+                            <span className="feather-icon">
+                              <Edit />
+                            </span>
+                          </span>
+                          <span className="nav-link-text">Pending</span>
+                        </a>
+                      </li>
+                      <li className="nav-item">
+                        <a className="nav-link" href="">
+                          <span className="nav-icon-wrap">
+                            <span className="feather-icon">
+                              <Trash2 />
+                            </span>
+                          </span>
+                          <span className="nav-link-text">Deleted</span>
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
+                  <div className="separator separator-light"></div>
+                  <div className="menu-group">
+                    <ul className="nav nav-light navbar-nav flex-column">
+                      <li className="nav-item">
+                        <a className="nav-link" href="">
+                          <span className="nav-icon-wrap">
+                            <span className="feather-icon">
+                              <i data-feather="upload"></i>
+                            </span>
+                          </span>
+                          <span className="nav-link-text">Export</span>
+                        </a>
+                      </li>
+                      <li className="nav-item">
+                        <a className="nav-link" href="">
+                          <span className="nav-icon-wrap">
+                            <span className="feather-icon">
+                              <i data-feather="download"></i>
+                            </span>
+                          </span>
+                          <span className="nav-link-text">Import</span>
+                        </a>
+                      </li>
+                      <li className="nav-item">
+                        <a className="nav-link" href="">
+                          <span className="nav-icon-wrap">
+                            <span className="feather-icon">
+                              <i data-feather="printer"></i>
+                            </span>
+                          </span>
+                          <span className="nav-link-text">Print</span>
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
+                  <div className="separator separator-light"></div>
+                  <div className="d-flex align-items-center justify-content-between mb-2">
+                    <div className="title-sm text-primary mb-0">Labels</div>
+                    <a
+                      href="#"
+                      className="btn btn-xs btn-icon btn-rounded btn-light"
+                      data-bs-toggle="modal"
+                      data-bs-target="#add_new_label"
+                    >
+                      <span
+                        className="icon"
+                        data-bs-toggle="tooltip"
+                        data-placement="top"
+                        title=""
+                        data-bs-original-title="Add Label"
+                      >
+                        <span className="feather-icon">
+                          <i data-feather="plus"></i>
+                        </span>
+                      </span>
+                    </a>
+                  </div>
+                  <div className="menu-group">
+                    <ul className="nav nav-light navbar-nav flex-column">
+                      <li className="nav-item">
+                        <a className="nav-link link-badge-right" href="#">
+                          <span className="nav-link-text">Design</span>
+                          <span className="badge badge-pill badge-sm badge-soft-primary ms-auto">
+                            136
+                          </span>
+                        </a>
+                      </li>
+                      <li className="nav-item">
+                        <a className="nav-link link-badge-right" href="#">
+                          <span className="nav-link-text">Development</span>
+                          <span className="badge badge-pill badge-sm badge-soft-primary ms-auto">
+                            2
+                          </span>
+                        </a>
+                      </li>
+                      <li className="nav-item">
+                        <a className="nav-link link-badge-right" href="#">
+                          <span className="nav-link-text">Inventory</span>
+                          <span className="badge badge-pill badge-sm badge-soft-primary ms-auto">
+                            86
+                          </span>
+                        </a>
+                      </li>
+                      <li className="nav-item">
+                        <a className="nav-link link-badge-right" href="#">
+                          <span className="nav-link-text">Human Resource</span>
+                          <span className="badge badge-pill badge-sm badge-soft-primary ms-auto">
+                            34
+                          </span>
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
+                  <div className="separator separator-light"></div>
+                  <div className="d-flex align-items-center justify-content-between mb-4">
+                    <div className="title-sm text-primary mb-0">Tags</div>
+                    <a
+                      href="#"
+                      className="btn btn-xs btn-icon btn-rounded btn-light"
+                      data-bs-toggle="modal"
+                      data-bs-target="#add_new_tag"
+                    >
+                      <span
+                        className="icon"
+                        data-bs-toggle="tooltip"
+                        data-placement="top"
+                        title=""
+                        data-bs-original-title="Add Tag"
+                      >
+                        <span className="feather-icon">
+                          <i data-feather="plus"></i>
+                        </span>
+                      </span>
+                    </a>
+                  </div>
+                  <div className="tag-cloud">
+                    <a href="#" className="badge badge-outline badge-light">
+                      Collaboration
+                    </a>
+                    <a href="#" className="badge badge-outline badge-light">
+                      React Developer
+                    </a>
+                    <a href="#" className="badge badge-outline badge-light">
+                      Angular Developer
+                    </a>
+                    <a href="#" className="badge badge-outline badge-light">
+                      promotion
+                    </a>
+                    <a href="#" className="badge badge-outline badge-light">
+                      Advertisement
+                    </a>
+                  </div>
+                </div>
+              </div>
+              {/* <!--Sidebar Fixnav--> */}
+              <div className="contactapp-fixednav">
+                <div className="hk-toolbar">
+                  <ul className="nav nav-light">
+                    <li className="nav-item nav-link">
+                      <a
+                        className="btn btn-icon btn-flush-dark btn-rounded flush-soft-hover"
+                        data-bs-toggle="tooltip"
+                        data-bs-placement="top"
+                        title=""
+                        data-bs-original-title="Settings"
+                        href="#"
+                      >
+                        <span className="icon">
+                          <span className="feather-icon">
+                            <i data-feather="settings"></i>
+                          </span>
+                        </span>
+                      </a>
+                    </li>
+                    <li className="nav-item nav-link">
+                      <a
+                        href="#"
+                        className="btn btn-icon btn-rounded btn-flush-dark flush-soft-hover"
+                        data-bs-toggle="tooltip"
+                        data-bs-placement="top"
+                        title=""
+                        data-bs-original-title="Archive"
+                      >
+                        <span className="icon">
+                          <span className="feather-icon">
+                            <i data-feather="archive"></i>
+                          </span>
+                        </span>
+                      </a>
+                    </li>
+                    <li className="nav-item nav-link">
+                      <a
+                        href="#"
+                        className="btn btn-icon btn-rounded btn-flush-dark flush-soft-hover"
+                        data-bs-toggle="tooltip"
+                        data-bs-placement="top"
+                        title=""
+                        data-bs-original-title="Help"
+                      >
+                        <span className="icon">
+                          <span className="feather-icon">
+                            <i data-feather="book"></i>
+                          </span>
+                        </span>
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              {/* <!--/ Sidebar Fixnav--> */}
+            </nav>
+            <div className="contactapp-content">
+              <div className="contactapp-detail-wrap">
+                <header className="contact-header">
+                  <div className="d-flex align-items-center">
+                    <div className="dropdown">
+                      <a
+                        className="contactapp-title dropdown-toggle link-dark"
+                        data-bs-toggle="dropdown"
+                        href="#"
+                        role="button"
+                        aria-haspopup="true"
+                        aria-expanded="false"
+                      >
+                        <h1>Contacts</h1>
+                      </a>
+                      <div className="dropdown-menu">
+                        <a className="dropdown-item" href="#">
+                          <span className="feather-icon dropdown-icon">
+                            <i data-feather="users"></i>
+                          </span>
+                          <span>All Contacts</span>
+                        </a>
+                        <a className="dropdown-item" href="#">
+                          <span className="feather-icon dropdown-icon">
+                            <i data-feather="star"></i>
+                          </span>
+                          <span>Important</span>
+                        </a>
+                        <a className="dropdown-item" href="#">
+                          <span className="feather-icon dropdown-icon">
+                            <i data-feather="archive"></i>
+                          </span>
+                          <span>Archive</span>
+                        </a>
+                        <a className="dropdown-item" href="#">
+                          <span className="feather-icon dropdown-icon">
+                            <i data-feather="edit"></i>
+                          </span>
+                          <span>Pending</span>
+                        </a>
+                        <a className="dropdown-item" href="#">
+                          <span className="feather-icon dropdown-icon">
+                            <i data-feather="trash-2"></i>
+                          </span>
+                          <span>Deleted</span>
+                        </a>
+                      </div>
+                    </div>
+                    <div className="dropdown ms-3">
+                      <button
+                        className="btn btn-sm btn-outline-secondary flex-shrink-0 dropdown-toggle d-lg-inline-block d-none"
+                        data-bs-toggle="dropdown"
+                      >
+                        Create New
+                      </button>
+                      <div className="dropdown-menu">
+                        <a className="dropdown-item" href="#">
+                          Add New Contact
+                        </a>
+                        <a className="dropdown-item" href="#">
+                          Add New Department
+                        </a>
+                        <a className="dropdown-item" href="#">
+                          Add Category
+                        </a>
+                        <a className="dropdown-item" href="#">
+                          Add New Tag
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="contact-options-wrap">
+                    <a
+                      className="btn btn-icon btn-flush-dark flush-soft-hover dropdown-toggle no-caret active"
+                      href="#"
+                      data-bs-toggle="dropdown"
+                    >
+                      <span className="icon">
+                        <span className="feather-icon">
+                          <List />
+                        </span>
+                      </span>
+                    </a>
+                    <div className="dropdown-menu dropdown-menu-end">
+                      <a className="dropdown-item active" href="contact.html">
+                        <span className="feather-icon dropdown-icon">
+                          <List />
+                        </span>
+                        <span>List View</span>
+                      </a>
+                      <a className="dropdown-item" href="contact-cards.html">
+                        <span className="feather-icon dropdown-icon">
+                          <Grid />
+                        </span>
+                        <span>Grid View</span>
+                      </a>
+                      <a className="dropdown-item" href="#">
+                        <span className="feather-icon dropdown-icon">
+                          <Server />
+                        </span>
+                        <span>Compact View</span>
+                      </a>
+                    </div>
+                    <a
+                      className="btn btn-icon btn-flush-dark btn-rounded flush-soft-hover no-caret d-sm-inline-block d-none"
+                      href="#"
+                      data-bs-toggle="tooltip"
+                      data-placement="top"
+                      title=""
+                      data-bs-original-title="Refresh"
+                    >
+                      <span className="icon">
+                        <span className="feather-icon">
+                          <RefreshCw />
+                        </span>
+                      </span>
+                    </a>
+                    <div className="v-separator d-lg-block d-none"></div>
+                    <a
+                      className="btn btn-icon btn-flush-dark btn-rounded flush-soft-hover dropdown-toggle no-caret  d-lg-inline-block d-none  ms-sm-0"
+                      href="#"
+                      data-bs-toggle="dropdown"
+                    >
+                      <span
+                        className="icon"
+                        data-bs-toggle="tooltip"
+                        data-placement="top"
+                        title=""
+                        data-bs-original-title="Manage Contact"
+                      >
+                        <span className="feather-icon">
+                          <Settings />
+                        </span>
+                      </span>
+                    </a>
+                    <div className="dropdown-menu dropdown-menu-end">
+                      <a className="dropdown-item" href="#">
+                        Manage Contact
+                      </a>
+                      <a className="dropdown-item" href="#">
+                        Import
+                      </a>
+                      <a className="dropdown-item" href="#">
+                        Export
+                      </a>
+                      <div className="dropdown-divider"></div>
+                      <a className="dropdown-item" href="#">
+                        Send Messages
+                      </a>
+                      <a className="dropdown-item" href="#">
+                        Delegate Access
+                      </a>
+                    </div>
+                    <a
+                      className="btn btn-icon btn-flush-dark btn-rounded flush-soft-hover dropdown-toggle no-caret d-lg-inline-block d-none"
+                      href="#"
+                      data-bs-toggle="dropdown"
+                    >
+                      <span
+                        className="icon"
+                        data-bs-toggle="tooltip"
+                        data-placement="top"
+                        title=""
+                        data-bs-original-title="More"
+                      >
+                        <span className="feather-icon">
+                          <MoreVertical />
+                        </span>
+                      </span>
+                    </a>
+                    <div className="dropdown-menu dropdown-menu-end">
+                      <a className="dropdown-item" href="profile.html">
+                        <span className="feather-icon dropdown-icon">
+                          <Star />
+                        </span>
+                        <span>Stared Contacts</span>
+                      </a>
+                      <a className="dropdown-item" href="#">
+                        <span className="feather-icon dropdown-icon">
+                          <Archive />
+                        </span>
+                        <span>Archive Contacts</span>
+                      </a>
+                      <div className="dropdown-divider"></div>
+                      <a className="dropdown-item" href="email.html">
+                        <span className="feather-icon dropdown-icon">
+                          <Slash />
+                        </span>
+                        <span>Block Content</span>
+                      </a>
+                      <a className="dropdown-item" href="email.html">
+                        <span className="feather-icon dropdown-icon">
+                          <ExternalLink />
+                        </span>
+                        <span>Feedback</span>
+                      </a>
+                    </div>
+                    <a
+                      className="btn btn-icon btn-flush-dark btn-rounded flush-soft-hover hk-navbar-togglable d-sm-inline-block d-none"
+                      href="#"
+                      data-bs-toggle="tooltip"
+                      data-placement="top"
+                      title=""
+                      data-bs-original-title="Collapse"
+                    >
+                      <span className="icon">
+                        <span className="feather-icon">
+                          <ChevronUp />
+                        </span>
+                        <span className="feather-icon d-none">
+                          <ChevronDown />
+                        </span>
+                      </span>
+                    </a>
+                  </div>
+                  <div className="hk-sidebar-togglable"></div>
+                </header>
+                <div className="contact-body">
+                  <div data-simplebar className="nicescroll-bar">
+                    <div className="collapse" id="collapseQuick">
+                      <div className="quick-access-form-wrap">
+                        <form className="quick-access-form border">
+                          <div className="row gx-3">
+                            <div className="col-xxl-10">
+                              <div className="position-relative">
+                                <div className="dropify-square">
+                                  <input type="file" className="dropify-1" />
+                                </div>
+                                <div className="col-md-12">
+                                  <div className="row gx-3">
+                                    <div className="col-lg-4">
+                                      <div className="form-group">
+                                        <input
+                                          className="form-control"
+                                          placeholder="First name*"
+                                          value=""
+                                          type="text"
+                                        />
+                                      </div>
+                                      <div className="form-group">
+                                        <input
+                                          className="form-control"
+                                          placeholder="Last name*"
+                                          value=""
+                                          type="text"
+                                        />
+                                      </div>
+                                    </div>
+                                    <div className="col-lg-4">
+                                      <div className="form-group">
+                                        <input
+                                          className="form-control"
+                                          placeholder="Email Id*"
+                                          value=""
+                                          type="text"
+                                        />
+                                      </div>
+                                      <div className="form-group">
+                                        <input
+                                          className="form-control"
+                                          placeholder="Phone"
+                                          value=""
+                                          type="text"
+                                        />
+                                      </div>
+                                    </div>
+                                    <div className="col-lg-4">
+                                      <div className="form-group">
+                                        <input
+                                          className="form-control"
+                                          placeholder="Department"
+                                          value=""
+                                          type="text"
+                                        />
+                                      </div>
+                                      <div className="form-group">
+                                        <select
+                                          id="input_tags"
+                                          className="form-control"
+                                          multiple={true}
+                                        >
+                                          <option selected={true}>
+                                            Collaborator
+                                          </option>
+                                          <option>Designer</option>
+                                          <option selected={true}>
+                                            Developer
+                                          </option>
+                                        </select>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <div className="col-xxl-2">
+                              <div className="form-group">
+                                <button
+                                  data-bs-toggle="collapse"
+                                  data-bs-target="#collapseExample"
+                                  aria-expanded="false"
+                                  className="btn btn-block btn-primary "
+                                >
+                                  Create New
+                                </button>
+                              </div>
+                              <div className="form-group">
+                                <button
+                                  data-bs-toggle="collapse"
+                                  disabled
+                                  data-bs-target="#collapseExample"
+                                  aria-expanded="false"
+                                  className="btn btn-block btn-secondary"
+                                >
+                                  Discard
+                                </button>
+                              </div>
+                            </div>
+                          </div>
+                        </form>
+                      </div>
+                    </div>
+                    <div className="contact-list-view">
+                      <table id="datable_1" className="table nowrap w-100 mb-5">
+                        <thead>
+                          <tr>
+                            <th>
+                              <span className="form-check mb-0">
+                                <input
+                                  type="checkbox"
+                                  className="form-check-input check-select-all"
+                                  id="customCheck1"
+                                />
+                                <label
+                                  className="form-check-label"
+                                  htmlFor="customCheck1"
+                                ></label>
+                              </span>
+                            </th>
+                            <th>Name</th>
+                            <th>Email Address</th>
+                            <th>Phone</th>
+                            <th>Tags</th>
+                            <th>Labels</th>
+                            <th>Date Created</th>
+                            <th>Actions</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <ContactListItem />
+                          <ContactListItem />
+                          <ContactListItem />
+                          <ContactListItem />
+                          <ContactListItem />
+                          <ContactListItem />
+                          <ContactListItem />
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              {/* <!-- Edit Info --> */}
+              <div
+                id="add_new_contact"
+                className="modal fade add-new-contact"
+                tabIndex={-1}
+                role="dialog"
+                aria-hidden="true"
+              >
+                <div
+                  className="modal-dialog modal-dialog-centered modal-lg"
+                  role="document"
+                >
+                  <div className="modal-content">
+                    <div className="modal-body">
+                      <button
+                        type="button"
+                        className="btn-close"
+                        data-bs-dismiss="modal"
+                        aria-label="Close"
+                      >
+                        <span aria-hidden="true">×</span>
+                      </button>
+                      <h5 className="mb-5">Create New Conatct</h5>
+                      <form>
+                        <div className="row gx-3">
+                          <div className="col-sm-2 form-group">
+                            <div className="dropify-square">
+                              <input type="file" className="dropify-1" />
+                            </div>
+                          </div>
+                          <div className="col-sm-10 form-group">
+                            <textarea
+                              className="form-control mnh-100p"
+                              rows={4}
+                              placeholder="Add Biography"
+                            ></textarea>
+                          </div>
+                        </div>
+                        <div className="title title-xs title-wth-divider text-primary text-uppercase my-4">
+                          <span>Basic Info</span>
+                        </div>
+                        <div className="row gx-3">
+                          <div className="col-sm-4">
+                            <div className="form-group">
+                              <label className="form-label">First Name</label>
+                              <input className="form-control" type="text" />
+                            </div>
+                          </div>
+                          <div className="col-sm-4">
+                            <div className="form-group">
+                              <label className="form-label">Middle Name</label>
+                              <input className="form-control" type="text" />
+                            </div>
+                          </div>
+                          <div className="col-sm-4">
+                            <div className="form-group">
+                              <label className="form-label">Last Name</label>
+                              <input className="form-control" type="text" />
+                            </div>
+                          </div>
+                        </div>
+                        <div className="row gx-3">
+                          <div className="col-sm-6">
+                            <div className="form-group">
+                              <label className="form-label">Email ID</label>
+                              <input className="form-control" type="text" />
+                            </div>
+                          </div>
+                          <div className="col-sm-6">
+                            <div className="form-group">
+                              <label className="form-label">Phone</label>
+                              <input className="form-control" type="text" />
+                            </div>
+                          </div>
+                        </div>
+                        <div className="row gx-3">
+                          <div className="col-sm-4">
+                            <div className="form-group">
+                              <label className="form-label">City</label>
+                              <select className="form-select">
+                                <option selected={true}>--</option>
+                                <option value="1">One</option>
+                                <option value="2">Two</option>
+                                <option value="3">Three</option>
+                              </select>
+                            </div>
+                          </div>
+                          <div className="col-sm-4">
+                            <div className="form-group">
+                              <label className="form-label">State</label>
+                              <select className="form-select">
+                                <option selected={true}>--</option>
+                                <option value="1">One</option>
+                                <option value="2">Two</option>
+                                <option value="3">Three</option>
+                              </select>
+                            </div>
+                          </div>
+                          <div className="col-sm-4">
+                            <div className="form-group">
+                              <label className="form-label">Country</label>
+                              <select className="form-select">
+                                <option selected={true}>--</option>
+                                <option value="1">One</option>
+                                <option value="2">Two</option>
+                                <option value="3">Three</option>
+                              </select>
+                            </div>
+                          </div>
+                        </div>
+                        <div className="title title-xs title-wth-divider text-primary text-uppercase my-4">
+                          <span>Company Info</span>
+                        </div>
+                        <div className="row gx-3">
+                          <div className="col-sm-6">
+                            <div className="form-group">
+                              <label className="form-label">Company Name</label>
+                              <input className="form-control" type="text" />
+                            </div>
+                          </div>
+                          <div className="col-sm-6">
+                            <div className="form-group">
+                              <label className="form-label">Designation</label>
+                              <input className="form-control" type="text" />
+                            </div>
+                          </div>
+                          <div className="col-sm-6">
+                            <div className="form-group">
+                              <label className="form-label">Website</label>
+                              <input className="form-control" type="text" />
+                            </div>
+                          </div>
+                          <div className="col-sm-6">
+                            <div className="form-group">
+                              <label className="form-label">Work Phone</label>
+                              <input className="form-control" type="text" />
+                            </div>
+                          </div>
+                        </div>
+                        <div className="title title-xs title-wth-divider text-primary text-uppercase my-4">
+                          <span>Additional Info</span>
+                        </div>
+                        <div className="row gx-3">
+                          <div className="col-sm-12">
+                            <div className="form-group">
+                              <label className="form-label">Tags</label>
+                              <select
+                                id="input_tags_2"
+                                className="form-control"
+                                multiple={true}
+                              ></select>
+                              <small className="form-text text-muted">
+                                You can add upto 4 tags per contact
+                              </small>
+                            </div>
+                          </div>
+                        </div>
+                        <div className="row gx-3">
+                          <div className="col-sm-6">
+                            <div className="form-group">
+                              <input
+                                className="form-control"
+                                type="text"
+                                placeholder="Facebook"
+                              />
+                            </div>
+                          </div>
+                          <div className="col-sm-6">
+                            <div className="form-group">
+                              <input
+                                className="form-control"
+                                type="text"
+                                placeholder="Twitter"
+                              />
+                            </div>
+                          </div>
+                          <div className="col-sm-6">
+                            <div className="form-group">
+                              <input
+                                className="form-control"
+                                type="text"
+                                placeholder="LinkedIn"
+                              />
+                            </div>
+                          </div>
+                          <div className="col-sm-6">
+                            <div className="form-group">
+                              <input
+                                className="form-control"
+                                type="text"
+                                placeholder="Gmail"
+                              />
+                            </div>
+                          </div>
+                        </div>
+                      </form>
+                    </div>
+                    <div className="modal-footer align-items-center">
+                      <button
+                        type="button"
+                        className="btn btn-secondary"
+                        data-bs-dismiss="modal"
+                      >
+                        Discard
+                      </button>
+                      <button
+                        type="button"
+                        className="btn btn-primary"
+                        data-bs-dismiss="modal"
+                      >
+                        Create Contact
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              {/* <!-- /Edit Info --> */}
+
+              {/* <!-- Add Label --> */}
+              <div
+                id="add_new_label"
+                className="modal fade"
+                tabIndex={-1}
+                role="dialog"
+                aria-hidden="true"
+              >
+                <div
+                  className="modal-dialog modal-dialog-centered modal-sm"
+                  role="document"
+                >
+                  <div className="modal-content">
+                    <div className="modal-body">
+                      <button
+                        type="button"
+                        className="btn-close"
+                        data-bs-dismiss="modal"
+                        aria-label="Close"
+                      >
+                        <span aria-hidden="true">×</span>
+                      </button>
+                      <h6 className="text-uppercase fw-bold mb-3">Add Label</h6>
+                      <form>
+                        <div className="row gx-3">
+                          <div className="col-sm-12">
+                            <div className="form-group">
+                              <input
+                                className="form-control"
+                                type="text"
+                                placeholder="Label Name"
+                              />
+                            </div>
+                          </div>
+                        </div>
+                        <button
+                          type="button"
+                          className="btn btn-primary float-end"
+                          data-bs-dismiss="modal"
+                        >
+                          Add
+                        </button>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              {/* <!-- Add Label --> */}
+
+              {/* <!-- Add Tag --> */}
+              <div
+                id="add_new_tag"
+                className="modal fade"
+                tabIndex={-1}
+                role="dialog"
+                aria-hidden="true"
+              >
+                <div
+                  className="modal-dialog modal-dialog-centered modal-sm"
+                  role="document"
+                >
+                  <div className="modal-content">
+                    <div className="modal-body">
+                      <button
+                        type="button"
+                        className="btn-close"
+                        data-bs-dismiss="modal"
+                        aria-label="Close"
+                      >
+                        <span aria-hidden="true">×</span>
+                      </button>
+                      <h6 className="text-uppercase fw-bold mb-3">Add Tag</h6>
+                      <form>
+                        <div className="row gx-3">
+                          <div className="col-sm-12">
+                            <div className="form-group">
+                              <select
+                                id="input_tags_3"
+                                className="form-control"
+                                multiple={true}
+                              >
+                                <option selected={true}>Collaborator</option>
+                                <option selected={true}>Designer</option>
+                                <option selected={true}>React Developer</option>
+                                <option selected={true}>Promotion</option>
+                                <option selected={true}>Advertisement</option>
+                              </select>
+                            </div>
+                          </div>
+                        </div>
+                        <button
+                          type="button"
+                          className="btn btn-primary float-end"
+                          data-bs-dismiss="modal"
+                        >
+                          Add
+                        </button>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              {/* <!-- Add Tag --> */}
+            </div>
+          </div>
+        </div>
+        {/* <!-- /Page Body --> */}
+      </div>
+      {/* <!-- /Main Content --> */}
+    </div>
+  );
+}
