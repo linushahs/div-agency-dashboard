@@ -1,291 +1,50 @@
-import React from "react";
+import clsx from "clsx";
+import { useState } from "react";
+import { ChevronDown, ChevronUp, Edit2, Sliders } from "react-feather";
+import { Link } from "react-router-dom";
+import SimpleBar from "simplebar-react";
+import InvoiceSidebar from "./InvoiceSidebar";
 
 export default function CreateInvoice() {
+  const [toggleSidebar, setToggleSidebar] = useState(false);
+  const [toggleSetting, setToggleSetting] = useState(false);
+
   return (
     <div className="hk-pg-wrapper pb-0">
       <div className="hk-pg-body py-0">
-        <div className="invoiceapp-wrap invoiceapp-setting-active">
-          <nav className="invoiceapp-sidebar">
-            <div data-simplebar className="nicescroll-bar">
-              <div className="menu-content-wrap">
-                <button
-                  type="button"
-                  aria-expanded="false"
-                  data-bs-toggle="dropdown"
-                  className="btn btn-primary btn-rounded btn-block mb-4 dropdown-toggle"
-                >
-                  Create
-                </button>
-                <div role="menu" className="dropdown-menu">
-                  <a className="dropdown-item" href="#">
-                    Create Invoice
-                  </a>
-                  <a className="dropdown-item" href="#">
-                    Create Estimate
-                  </a>
-                </div>
-                <div className="menu-group">
-                  <ul className="nav nav-light navbar-nav flex-column">
-                    <li className="nav-item active">
-                      <a className="nav-link" href="javascript:void(0);">
-                        <span className="nav-icon-wrap">
-                          <span className="feather-icon">
-                            <i data-feather="users"></i>
-                          </span>
-                        </span>
-                        <span className="nav-link-text">All Invoices</span>
-                      </a>
-                    </li>
-                    <li className="nav-item">
-                      <a className="nav-link" href="javascript:void(0);">
-                        <span className="nav-icon-wrap">
-                          <span className="feather-icon">
-                            <i data-feather="star"></i>
-                          </span>
-                        </span>
-                        <span className="nav-link-text">Sent</span>
-                      </a>
-                    </li>
-                    <li className="nav-item">
-                      <a className="nav-link" href="javascript:void(0);">
-                        <span className="nav-icon-wrap">
-                          <span className="feather-icon">
-                            <i data-feather="archive"></i>
-                          </span>
-                        </span>
-                        <span className="nav-link-text">Archived</span>
-                      </a>
-                    </li>
-                    <li className="nav-item">
-                      <a className="nav-link" href="javascript:void(0);">
-                        <span className="nav-icon-wrap">
-                          <span className="feather-icon">
-                            <i data-feather="edit"></i>
-                          </span>
-                        </span>
-                        <span className="nav-link-text">Pending</span>
-                      </a>
-                    </li>
-                    <li className="nav-item">
-                      <a className="nav-link" href="javascript:void(0);">
-                        <span className="nav-icon-wrap">
-                          <span className="feather-icon">
-                            <i data-feather="trash-2"></i>
-                          </span>
-                        </span>
-                        <span className="nav-link-text">Deleted</span>
-                      </a>
-                    </li>
-                  </ul>
-                </div>
-                <div className="menu-gap"></div>
-                <div className="nav-header">
-                  <span>Manage</span>
-                </div>
-                <div className="menu-group">
-                  <ul className="nav nav-light navbar-nav flex-column">
-                    <li className="nav-item">
-                      <a className="nav-link" href="javascript:void(0);">
-                        <span className="nav-icon-wrap">
-                          <span className="feather-icon">
-                            <i data-feather="upload"></i>
-                          </span>
-                        </span>
-                        <span className="nav-link-text">Manage Invoices</span>
-                      </a>
-                    </li>
-                    <li className="nav-item">
-                      <a className="nav-link" href="javascript:void(0);">
-                        <span className="nav-icon-wrap">
-                          <span className="feather-icon">
-                            <i data-feather="download"></i>
-                          </span>
-                        </span>
-                        <span className="nav-link-text">
-                          Recurring Invoices
-                        </span>
-                      </a>
-                    </li>
-                    <li className="nav-item">
-                      <a className="nav-link" href="javascript:void(0);">
-                        <span className="nav-icon-wrap">
-                          <span className="feather-icon">
-                            <i data-feather="layers"></i>
-                          </span>
-                        </span>
-                        <span className="nav-link-text">Manage Estimate</span>
-                      </a>
-                    </li>
-                    <li className="nav-item">
-                      <a className="nav-link" href="javascript:void(0);">
-                        <span className="nav-icon-wrap">
-                          <span className="feather-icon">
-                            <i data-feather="book"></i>
-                          </span>
-                        </span>
-                        <span className="nav-link-text">Manage Contacts</span>
-                      </a>
-                    </li>
-                    <li className="nav-item">
-                      <a className="nav-link" href="javascript:void(0);">
-                        <span className="nav-icon-wrap">
-                          <span className="feather-icon">
-                            <i data-feather="save"></i>
-                          </span>
-                        </span>
-                        <span className="nav-link-text">Saved Templates</span>
-                      </a>
-                    </li>
-                  </ul>
-                </div>
-                <div className="menu-gap"></div>
-                <div className="nav-header">
-                  <span>Info</span>
-                </div>
-                <div className="menu-group">
-                  <ul className="nav nav-light navbar-nav flex-column">
-                    <li className="nav-item">
-                      <a className="nav-link" href="javascript:void(0);">
-                        <span className="nav-icon-wrap">
-                          <span className="feather-icon">
-                            <i data-feather="users"></i>
-                          </span>
-                        </span>
-                        <span className="nav-link-text">Business Info</span>
-                      </a>
-                    </li>
-                    <li className="nav-item">
-                      <a className="nav-link" href="javascript:void(0);">
-                        <span className="nav-icon-wrap">
-                          <span className="feather-icon">
-                            <i data-feather="star"></i>
-                          </span>
-                        </span>
-                        <span className="nav-link-text">Tax Info</span>
-                      </a>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-            {/* <!--Sidebar Fixnav--> */}
-            <div className="invoiceapp-fixednav">
-              <div className="hk-toolbar">
-                <ul className="nav nav-light">
-                  <li className="nav-item nav-link">
-                    <a
-                      className="btn btn-icon btn-flush-dark btn-rounded flush-soft-hover"
-                      data-bs-toggle="tooltip"
-                      data-bs-placement="top"
-                      title=""
-                      data-bs-original-title="Settings"
-                      href="#"
-                    >
-                      <span className="icon">
-                        <span className="feather-icon">
-                          <i data-feather="settings"></i>
-                        </span>
-                      </span>
-                    </a>
-                  </li>
-                  <li className="nav-item nav-link">
-                    <a
-                      href="#"
-                      className="btn btn-icon btn-rounded btn-flush-dark flush-soft-hover"
-                      data-bs-toggle="tooltip"
-                      data-bs-placement="top"
-                      title=""
-                      data-bs-original-title="Archive"
-                    >
-                      <span className="icon">
-                        <span className="feather-icon">
-                          <i data-feather="archive"></i>
-                        </span>
-                      </span>
-                    </a>
-                  </li>
-                  <li className="nav-item nav-link">
-                    <a
-                      href="#"
-                      className="btn btn-icon btn-rounded btn-flush-dark flush-soft-hover"
-                      data-bs-toggle="tooltip"
-                      data-bs-placement="top"
-                      title=""
-                      data-bs-original-title="Help"
-                    >
-                      <span className="icon">
-                        <span className="feather-icon">
-                          <i data-feather="book"></i>
-                        </span>
-                      </span>
-                    </a>
-                  </li>
-                </ul>
-              </div>
-            </div>
-            {/* <!--/ Sidebar Fixnav--> */}
-          </nav>
+        {/* invoiceapp-setting-active --->  */}
+        <div
+          className={clsx(
+            toggleSidebar && "invoiceapp-sidebar-toggle",
+            toggleSetting && "invoiceapp-setting-active",
+            "invoiceapp-wrap"
+          )}
+        >
+          <InvoiceSidebar />
+
+          {/* Main section -------------------->  */}
           <div className="invoiceapp-content">
             <div className="invoiceapp-detail-wrap">
               <header className="invoice-header">
-                <div className="d-flex align-items-center">
-                  <a
-                    className="invoiceapp-title dropdown-toggle link-dark"
-                    data-bs-toggle="dropdown"
-                    href="#"
-                    role="button"
-                    aria-haspopup="true"
-                    aria-expanded="false"
-                  >
-                    <h1>Standard Template</h1>
-                  </a>
-                  <div className="dropdown-menu dropdown-menu-right">
-                    <a className="dropdown-item" href="#">
-                      Simplicity Template
-                    </a>
-                    <a className="dropdown-item" href="#">
-                      Essential Template
-                    </a>
-                    <a className="dropdown-item" href="#">
-                      Classic Template
-                    </a>
-                    <a className="dropdown-item" href="#">
-                      Pro Forma Template
-                    </a>
-                    <a className="dropdown-item" href="#">
-                      Trade Template
-                    </a>
-                    <a className="dropdown-item" href="#">
-                      Interim Template
-                    </a>
-                    <a className="dropdown-item" href="#">
-                      Primary Template
-                    </a>
-                    <a className="dropdown-item" href="#">
-                      Matt Opel Template
-                    </a>
-                    <a className="dropdown-item" href="#">
-                      Freelancer Template
-                    </a>
-                  </div>
-                </div>
+                <div className="d-flex align-items-center"></div>
                 <div className="invoice-options-wrap">
                   <a
-                    className="btn btn-icon btn-flush-dark btn-rounded flush-soft-hover invoiceapp-setting-toggle active"
+                    className="btn btn-icon btn-flush-dark btn-rounded flush-soft-hover invoiceapp-setting-toggle"
                     href="#"
+                    onClick={() => setToggleSetting(!toggleSetting)}
                   >
                     <span className="icon">
                       <span className="feather-icon">
-                        <i data-feather="sliders"></i>
+                        <Sliders />
                       </span>
                     </span>
                   </a>
-                  <a
-                    href="invoice-preview.html"
+                  <Link
+                    to="/invoice-preview"
                     className="btn btn-outline-secondary flex-shrink-0 d-md-inline-block d-none"
                   >
                     Preview
-                  </a>
+                  </Link>
                   <a
                     href="#"
                     className="btn btn-primary ms-2 d-sm-inline-block d-none"
@@ -302,18 +61,27 @@ export default function CreateInvoice() {
                   >
                     <span className="icon">
                       <span className="feather-icon">
-                        <i data-feather="chevron-up"></i>
+                        <ChevronUp />
                       </span>
                       <span className="feather-icon d-none">
-                        <i data-feather="chevron-down"></i>
+                        <ChevronDown />
                       </span>
                     </span>
                   </a>
                 </div>
-                <div className="hk-sidebar-togglable"></div>
+                <div
+                  className={clsx(
+                    toggleSidebar && "active",
+                    "hk-sidebar-togglable"
+                  )}
+                  onClick={() => setToggleSidebar(!toggleSidebar)}
+                ></div>
               </header>
               <div className="invoice-body">
-                <div data-simplebar className="nicescroll-bar">
+                <SimpleBar
+                  style={{ height: "100%" }}
+                  className="nicescroll-bar"
+                >
                   <div className="container">
                     <div className="create-invoice-wrap mt-xxl-5 p-md-5 p-3">
                       <div className="row">
@@ -330,7 +98,7 @@ export default function CreateInvoice() {
                             >
                               <span className="icon">
                                 <span className="feather-icon">
-                                  <i data-feather="edit-2"></i>
+                                  <Edit2 />
                                 </span>
                               </span>
                             </a>
@@ -359,9 +127,9 @@ export default function CreateInvoice() {
                             </div>
                             <a
                               className="d-inline-flex align-items-center mt-2"
+                              href="#"
                               data-bs-toggle="modal"
                               data-bs-target="#edit_info"
-                              href="#"
                             >
                               <i className="ri-pencil-line me-1"></i> Edit Info
                             </a>
@@ -371,11 +139,9 @@ export default function CreateInvoice() {
                           <form>
                             <div className="row gx-3">
                               <div className="col-lg-6 form-group">
-                                <input
-                                  className="form-control"
-                                  value="Invoice No*"
-                                  type="text"
-                                />
+                                <span className="form-control">
+                                  Invoice No*
+                                </span>
                               </div>
                               <div className="col-lg-6 form-group">
                                 <input
@@ -387,11 +153,9 @@ export default function CreateInvoice() {
                             </div>
                             <div className="row gx-3">
                               <div className="col-lg-6 form-group">
-                                <input
-                                  className="form-control"
-                                  value="Invoice Date*"
-                                  type="text"
-                                />
+                                <span className="form-control">
+                                  Invoice Date*
+                                </span>
                               </div>
                               <div className="col-lg-6 form-group">
                                 <input
@@ -404,11 +168,7 @@ export default function CreateInvoice() {
                             </div>
                             <div className="row gx-3">
                               <div className="col-lg-6 form-group">
-                                <input
-                                  className="form-control"
-                                  value="Due date*"
-                                  type="text"
-                                />
+                                <span className="form-control">Due Date*</span>
                               </div>
                               <div className="col-lg-6 form-group">
                                 <select className="form-select">
@@ -421,11 +181,9 @@ export default function CreateInvoice() {
                             </div>
                             <div className="row gx-3">
                               <div className="col-lg-6 form-group">
-                                <input
-                                  className="form-control"
-                                  value="Customer No"
-                                  type="text"
-                                />
+                                <span className="form-control">
+                                  Customer No*
+                                </span>
                               </div>
                               <div className="col-lg-6 form-group">
                                 <input
@@ -576,43 +334,7 @@ export default function CreateInvoice() {
                           </div>
                         </div>
                       </div>
-                      <div className="row mt-5">
-                        <div className="col-sm">
-                          <form className="form-inline p-3 bg-grey-light-5 rounded">
-                            <div className="row gx-3 align-items-center">
-                              <div className="col-xl-auto mb-xl-0 mb-2">
-                                <label className="form-label mb-xl-0">
-                                  Filters
-                                </label>
-                              </div>
-                              <div className="col-xl-auto mb-xl-0 mb-2">
-                                <select className="form-select">
-                                  <option selected>Number format</option>
-                                  <option value="1">One</option>
-                                  <option value="2">Two</option>
-                                  <option value="3">Three</option>
-                                </select>
-                              </div>
-                              <div className="col-xl-auto mb-xl-0 mb-2">
-                                <select className="form-select">
-                                  <option selected>Add/Remove columns</option>
-                                  <option value="1">One</option>
-                                  <option value="2">Two</option>
-                                  <option value="3">Three</option>
-                                </select>
-                              </div>
-                              <div className="col-xl-auto">
-                                <select className="form-select">
-                                  <option selected>US Dollar ($ USD)</option>
-                                  <option value="1">One</option>
-                                  <option value="2">Two</option>
-                                  <option value="3">Three</option>
-                                </select>
-                              </div>
-                            </div>
-                          </form>
-                        </div>
-                      </div>
+
                       <div className="table-wrap mt-5">
                         <div className="invoice-table-wrap">
                           <table className="table table-bordered invoice-table">
@@ -898,7 +620,7 @@ export default function CreateInvoice() {
                           </li>
                           <li
                             data-repeater-item
-                            style={{display: "none"}}
+                            style={{ display: "none" }}
                             className="form-group close-over"
                           >
                             <input type="text" className="form-control" />
@@ -959,11 +681,18 @@ export default function CreateInvoice() {
                       </div>
                     </div>
                   </div>
-                </div>
+                </SimpleBar>
               </div>
               <div className="invoice-settings">
-                <div data-simplebar className="nicescroll-bar">
-                  <button type="button" className="info-close btn-close">
+                <SimpleBar
+                  style={{ height: "100%" }}
+                  className="nicescroll-bar"
+                >
+                  <button
+                    type="button"
+                    className="info-close btn-close"
+                    onClick={() => setToggleSetting(!toggleSetting)}
+                  >
                     <span aria-hidden="true">×</span>
                   </button>
                   <div className="collapse-simple mt-lg-0 mt-2">
@@ -1151,7 +880,7 @@ export default function CreateInvoice() {
                       </div>
                     </div>
                   </div>
-                </div>
+                </SimpleBar>
               </div>
             </div>
           </div>
@@ -1160,8 +889,8 @@ export default function CreateInvoice() {
             id="edit_info"
             className="modal fade"
             tabIndex={-1}
-            role="dialog"
-            aria-hidden="true"
+            aria-labelledby="edit_info"
+            aria-hidden={true}
           >
             <div className="modal-dialog modal-dialog-centered" role="document">
               <div className="modal-content">
@@ -1213,7 +942,11 @@ export default function CreateInvoice() {
                   </form>
                 </div>
                 <div className="modal-footer align-items-center">
-                  <button type="button" className="btn btn-secondary">
+                  <button
+                    type="button"
+                    className="btn btn-secondary"
+                    data-bs-dismiss="modal"
+                  >
                     Discard
                   </button>
                   <button
@@ -1287,7 +1020,11 @@ export default function CreateInvoice() {
                   </form>
                 </div>
                 <div className="modal-footer align-items-center">
-                  <button type="button" className="btn btn-secondary">
+                  <button
+                    type="button"
+                    className="btn btn-secondary"
+                    data-bs-dismiss="modal"
+                  >
                     Discard
                   </button>
                   <button
