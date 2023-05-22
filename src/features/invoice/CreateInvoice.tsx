@@ -1,5 +1,6 @@
 import clsx from "clsx";
 import { useState } from "react";
+import { Modal } from "react-bootstrap";
 import { ChevronDown, ChevronUp, Edit2, Sliders } from "react-feather";
 import { Link } from "react-router-dom";
 import SimpleBar from "simplebar-react";
@@ -8,6 +9,8 @@ import InvoiceSidebar from "./InvoiceSidebar";
 export default function CreateInvoice() {
   const [toggleSidebar, setToggleSidebar] = useState(false);
   const [toggleSetting, setToggleSetting] = useState(false);
+  const [showEditModal, setShowEditModal] = useState(false);
+  const [showBilledEditModal, setShowBilledEditModal] = useState(false);
 
   return (
     <div className="hk-pg-wrapper pb-0">
@@ -128,8 +131,7 @@ export default function CreateInvoice() {
                             <a
                               className="d-inline-flex align-items-center mt-2"
                               href="#"
-                              data-bs-toggle="modal"
-                              data-bs-target="#edit_info"
+                              onClick={() => setShowEditModal(true)}
                             >
                               <i className="ri-pencil-line me-1"></i> Edit Info
                             </a>
@@ -243,9 +245,8 @@ export default function CreateInvoice() {
                             </div>
                             <a
                               className="d-inline-flex align-items-center"
-                              data-bs-toggle="modal"
-                              data-bs-target="#billed_info"
                               href="#"
+                              onClick={() => setShowBilledEditModal(true)}
                             >
                               <i className="ri-add-box-line me-1"></i> Add new
                               client
@@ -885,159 +886,136 @@ export default function CreateInvoice() {
             </div>
           </div>
           {/* <!-- Edit Info --> */}
-          <div
-            id="edit_info"
-            className="modal fade"
+          <Modal
             tabIndex={-1}
-            aria-labelledby="edit_info"
-            aria-hidden={true}
+            show={showEditModal}
+            onHide={() => setShowEditModal(false)}
           >
-            <div className="modal-dialog modal-dialog-centered" role="document">
-              <div className="modal-content">
-                <div className="modal-body">
-                  <button
-                    type="button"
-                    className="btn-close"
-                    data-bs-dismiss="modal"
-                    aria-label="Close"
-                  >
-                    <span aria-hidden="true">×</span>
-                  </button>
-                  <h5 className="mb-5">Edit Info</h5>
-                  <form>
-                    <div className="row gx-3">
-                      <div className="col-sm-12 form-group">
-                        <label className="form-label">Company Name</label>
-                        <input
-                          className="form-control"
-                          type="text"
-                          value="Hencework"
-                        />
-                      </div>
-                      <div className="col-sm-12 form-group">
-                        <label className="form-label">Email ID</label>
-                        <input
-                          className="form-control"
-                          type="email"
-                          value="jampack_01@hencework.com"
-                        />
-                      </div>
-                      <div className="col-sm-12 form-group">
-                        <label className="form-label">Address Line One</label>
-                        <input
-                          className="form-control"
-                          type="text"
-                          value="4747, Pearl Street Rainy day Drive"
-                        />
-                      </div>
-                      <div className="col-sm-12 form-group">
-                        <label className="form-label">Address Line Two</label>
-                        <input
-                          className="form-control"
-                          type="text"
-                          value="Washington DC 42341"
-                        />
-                      </div>
-                    </div>
-                  </form>
+            <Modal.Header closeButton>
+              <Modal.Title>Edit Info</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+              <form>
+                <div className="row gx-3">
+                  <div className="col-sm-12 form-group">
+                    <label className="form-label">Company Name</label>
+                    <input
+                      className="form-control"
+                      type="text"
+                      value="Hencework"
+                    />
+                  </div>
+                  <div className="col-sm-12 form-group">
+                    <label className="form-label">Email ID</label>
+                    <input
+                      className="form-control"
+                      type="email"
+                      value="jampack_01@hencework.com"
+                    />
+                  </div>
+                  <div className="col-sm-12 form-group">
+                    <label className="form-label">Address Line One</label>
+                    <input
+                      className="form-control"
+                      type="text"
+                      value="4747, Pearl Street Rainy day Drive"
+                    />
+                  </div>
+                  <div className="col-sm-12 form-group">
+                    <label className="form-label">Address Line Two</label>
+                    <input
+                      className="form-control"
+                      type="text"
+                      value="Washington DC 42341"
+                    />
+                  </div>
                 </div>
-                <div className="modal-footer align-items-center">
-                  <button
-                    type="button"
-                    className="btn btn-secondary"
-                    data-bs-dismiss="modal"
-                  >
-                    Discard
-                  </button>
-                  <button
-                    type="button"
-                    className="btn btn-primary"
-                    data-bs-dismiss="modal"
-                  >
-                    Add
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
+              </form>
+            </Modal.Body>
+            <Modal.Footer>
+              <button
+                type="button"
+                className="btn btn-secondary"
+                onClick={() => setShowEditModal(false)}
+              >
+                Discard
+              </button>
+              <button
+                type="button"
+                className="btn btn-primary"
+                data-bs-dismiss="modal"
+              >
+                Add
+              </button>
+            </Modal.Footer>
+          </Modal>
           {/* <!-- /Edit Info --> */}
 
           {/* <!-- Billed Edit Info --> */}
-          <div
-            id="billed_info"
-            className="modal fade"
+          <Modal
             tabIndex={-1}
-            role="dialog"
-            aria-hidden="true"
+            show={showBilledEditModal}
+            onHide={() => setShowBilledEditModal(false)}
           >
-            <div className="modal-dialog modal-dialog-centered" role="document">
-              <div className="modal-content">
-                <div className="modal-body">
-                  <button
-                    type="button"
-                    className="btn-close"
-                    data-bs-dismiss="modal"
-                    aria-label="Close"
-                  >
-                    <span aria-hidden="true">×</span>
-                  </button>
-                  <h5 className="mb-5">Billed To</h5>
-                  <form>
-                    <div className="row gx-3">
-                      <div className="col-sm-12 form-group">
-                        <label className="form-label">Company Name</label>
-                        <input
-                          className="form-control"
-                          type="text"
-                          value="Supernova Consultants"
-                        />
-                      </div>
-                      <div className="col-sm-12 form-group">
-                        <label className="form-label">Email ID</label>
-                        <input
-                          className="form-control"
-                          type="email"
-                          value="thompson_peter@super.co"
-                        />
-                      </div>
-                      <div className="col-sm-12 form-group">
-                        <label className="form-label">Address Line One</label>
-                        <input
-                          className="form-control"
-                          type="text"
-                          value="Sycamore Street"
-                        />
-                      </div>
-                      <div className="col-sm-12 form-group">
-                        <label className="form-label">Address Line Two</label>
-                        <input
-                          className="form-control"
-                          type="text"
-                          value="San Antonio Valley, CA 34668"
-                        />
-                      </div>
-                    </div>
-                  </form>
+            <Modal.Header closeButton>
+              <Modal.Title>Billed To</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+              <form>
+                <div className="row gx-3">
+                  <div className="col-sm-12 form-group">
+                    <label className="form-label">Company Name</label>
+                    <input
+                      className="form-control"
+                      type="text"
+                      value="Supernova Consultants"
+                    />
+                  </div>
+                  <div className="col-sm-12 form-group">
+                    <label className="form-label">Email ID</label>
+                    <input
+                      className="form-control"
+                      type="email"
+                      value="thompson_peter@super.co"
+                    />
+                  </div>
+                  <div className="col-sm-12 form-group">
+                    <label className="form-label">Address Line One</label>
+                    <input
+                      className="form-control"
+                      type="text"
+                      value="Sycamore Street"
+                    />
+                  </div>
+                  <div className="col-sm-12 form-group">
+                    <label className="form-label">Address Line Two</label>
+                    <input
+                      className="form-control"
+                      type="text"
+                      value="San Antonio Valley, CA 34668"
+                    />
+                  </div>
                 </div>
-                <div className="modal-footer align-items-center">
-                  <button
-                    type="button"
-                    className="btn btn-secondary"
-                    data-bs-dismiss="modal"
-                  >
-                    Discard
-                  </button>
-                  <button
-                    type="button"
-                    className="btn btn-primary"
-                    data-bs-dismiss="modal"
-                  >
-                    Add
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
+              </form>
+            </Modal.Body>
+            <Modal.Footer className="align-items-center">
+              <button
+                type="button"
+                className="btn btn-secondary"
+                onClick={() => setShowBilledEditModal(false)}
+              >
+                Discard
+              </button>
+              <button
+                type="button"
+                className="btn btn-primary"
+                data-bs-dismiss="modal"
+              >
+                Add
+              </button>
+            </Modal.Footer>
+          </Modal>
+
           {/* <!-- /Billed Edit Info --> */}
         </div>
       </div>
