@@ -1,4 +1,3 @@
-import { Menu } from "@headlessui/react";
 import {
   Archive,
   Copy,
@@ -9,7 +8,24 @@ import {
 } from "react-feather";
 import { Dropdown } from "react-bootstrap";
 
-export default function ContactListItem() {
+export type ContactProps = {
+  id: number;
+  name: string;
+  email: string;
+  phone: string;
+  tags: string[];
+  label: string;
+  date: string;
+  action: string;
+};
+
+export default function ContactListItem({
+  contact,
+}: {
+  contact: ContactProps;
+}) {
+  const { name, email, phone, tags, label, date, action } = contact;
+
   return (
     <tr>
       <td>
@@ -33,20 +49,20 @@ export default function ContactListItem() {
             </div>
           </div>
           <div className="media-body">
-            <span className="d-block text-high-em">Morgan Freeman</span>
+            <span className="d-block text-high-em">{name}</span>
           </div>
         </div>
       </td>
-      <td className="text-truncate">morgan@jampack.com</td>
-      <td>+145 52 5689</td>
+      <td className="text-truncate">{email}</td>
+      <td>{phone}</td>
       <td>
-        <span className="badge badge-soft-violet my-1  me-2">Promotion</span>
+        <span className="badge badge-soft-violet my-1  me-2">Collaborator</span>
         <span className="badge badge-soft-danger  my-1  me-2">
-          Collaborator
+          Angular Developer
         </span>
       </td>
-      <td>Design</td>
-      <td>13 Jan, 2020</td>
+      <td>{label}</td>
+      <td>{date}</td>
       <td>
         <div className="d-flex align-items-center">
           <div className="d-flex">

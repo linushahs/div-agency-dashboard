@@ -3,24 +3,29 @@ import ReactDOM from "react-dom/client";
 import App from "./App.tsx";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import ErrorPage from "./404.tsx";
-import ContactList from "./features/ContactList.tsx";
-import EditContact from "./features/EditContact.tsx";
+import ContactList from "./features/contact/ContactList.tsx";
+import EditContact from "./features/contact/EditContact.tsx";
+import InvoiceList from "./features/invoice/InvoiceList.tsx";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
     errorElement: <ErrorPage />,
-  },
-  {
-    path: "/contact",
-    element: <ContactList />,
-    errorElement: <ErrorPage />,
-  },
-  {
-    path: "/edit-contact",
-    element: <EditContact />,
-    errorElement: <ErrorPage />,
+    children: [
+      {
+        path: "/contact",
+        element: <ContactList />,
+      },
+      {
+        path: "/edit-contact",
+        element: <EditContact />,
+      },
+      {
+        path: "/invoice",
+        element: <InvoiceList />,
+      },
+    ],
   },
 ]);
 

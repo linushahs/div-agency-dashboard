@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import SimpleBar from "simplebar-react";
 
 type VerticalNavbarProps = {
@@ -71,7 +72,7 @@ export default function VerticalNavbar({
             <div className="menu-group">
               <ul className="navbar-nav flex-column">
                 <li className="nav-item active">
-                  <a className="nav-link" href="index.html">
+                  <a className="nav-link" href="/">
                     <span className="nav-icon-wrap">
                       <span className="svg-icon">
                         <svg
@@ -145,25 +146,19 @@ export default function VerticalNavbar({
                       <li className="nav-item">
                         <ul className="nav flex-column">
                           <li className="nav-item">
-                            <a className="nav-link" href="contact.html">
+                            <Link className="nav-link" to="/contact">
                               <span className="nav-link-text">
                                 Contact List
                               </span>
-                            </a>
+                            </Link>
                           </li>
+
                           <li className="nav-item">
-                            <a className="nav-link" href="contact-cards.html">
-                              <span className="nav-link-text">
-                                Contact Cards
-                              </span>
-                            </a>
-                          </li>
-                          <li className="nav-item">
-                            <a className="nav-link" href="edit-contact.html">
+                            <Link className="nav-link" to="/edit-contact">
                               <span className="nav-link-text">
                                 Edit Contact
                               </span>
-                            </a>
+                            </Link>
                           </li>
                         </ul>
                       </li>
@@ -391,35 +386,26 @@ export default function VerticalNavbar({
                       <li className="nav-item">
                         <ul className="nav flex-column">
                           <li className="nav-item">
-                            <a className="nav-link" href="invoice-list.html">
+                            <Link className="nav-link" to="/invoice">
                               <span className="nav-link-text">
                                 Invoice List
                               </span>
-                            </a>
+                            </Link>
                           </li>
+
                           <li className="nav-item">
-                            <a
-                              className="nav-link"
-                              href="invoice-templates.html"
-                            >
-                              <span className="nav-link-text">
-                                Invoice Templates
-                              </span>
-                            </a>
-                          </li>
-                          <li className="nav-item">
-                            <a className="nav-link" href="create-invoice.html">
+                            <Link className="nav-link" to="/create-invoice">
                               <span className="nav-link-text">
                                 Create Invoice
                               </span>
-                            </a>
+                            </Link>
                           </li>
                           <li className="nav-item">
-                            <a className="nav-link" href="invoice-preview.html">
+                            <Link className="nav-link" to="/invoice-preview">
                               <span className="nav-link-text">
                                 Invoice Preview
                               </span>
-                            </a>
+                            </Link>
                           </li>
                         </ul>
                       </li>

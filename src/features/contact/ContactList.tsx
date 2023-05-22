@@ -1,6 +1,6 @@
 import clsx from "clsx";
 import { Dropdown } from "react-bootstrap";
-import ContactListItem from "./ContactListItem";
+import DataTable from "react-data-table-component";
 
 //import icons
 import { useState } from "react";
@@ -28,14 +28,36 @@ import {
   Users,
 } from "react-feather";
 import SimpleBar from "simplebar-react";
-import Layout from "../layout/Layout";
+
+//state
+import { columns } from "../../state/contact-columns";
+import { data } from "../../state/contact-data";
+
+//custom styles
+const customStyles = {
+  rows: {
+    style: {
+      minHeight: "72px",
+    },
+  },
+  cells: {
+    style: {
+      fontSize: "16px",
+      color: "#6f6f6f",
+    },
+  },
+  headCells: {
+    style: {
+      fontSize: "16px",
+    },
+  },
+};
 
 export default function ContactList() {
   const [toggleSidebar, setToggleSidebar] = useState(false);
-  const [navLayout, setNavLayout] = useState("collapsed");
 
   return (
-    <Layout navLayout={navLayout} setNavLayout={setNavLayout}>
+    <section>
       {/* <!-- Main Content --> */}
       <div className="hk-pg-wrapper pb-0">
         {/* <!-- Page Body --> */}
@@ -46,6 +68,8 @@ export default function ContactList() {
               "contactapp-wrap"
             )}
           >
+            {/* contact app sidebar ------------------------->  */}
+            {/* -------------------------------------------> */}
             <nav className="contactapp-sidebar">
               <SimpleBar style={{ height: "84vh" }}>
                 <div className="menu-content-wrap">
@@ -531,8 +555,14 @@ export default function ContactList() {
                     onClick={() => setToggleSidebar(!toggleSidebar)}
                   ></div>
                 </header>
+
+                {/* contact body ------------------------------>  */}
+                {/* ------------------------------------------->  */}
                 <div className="contact-body">
-                  <div data-simplebar className="nicescroll-bar">
+                  <SimpleBar
+                    style={{ height: "100%" }}
+                    className="nicescroll-bar"
+                  >
                     <div className="collapse" id="collapseQuick">
                       <div className="quick-access-form-wrap">
                         <form className="quick-access-form border">
@@ -636,44 +666,53 @@ export default function ContactList() {
                         </form>
                       </div>
                     </div>
+
                     <div className="contact-list-view">
-                      <table id="datable_1" className="table nowrap w-100 mb-5">
-                        <thead>
-                          <tr>
-                            <th>
-                              <span className="form-check mb-0">
-                                <input
-                                  type="checkbox"
-                                  className="form-check-input check-select-all"
-                                  id="customCheck1"
-                                />
-                                <label
-                                  className="form-check-label"
-                                  htmlFor="customCheck1"
-                                ></label>
-                              </span>
-                            </th>
-                            <th>Name</th>
-                            <th>Email Address</th>
-                            <th>Phone</th>
-                            <th>Tags</th>
-                            <th>Labels</th>
-                            <th>Date Created</th>
-                            <th>Actions</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <ContactListItem />
-                          <ContactListItem />
-                          <ContactListItem />
-                          <ContactListItem />
-                          <ContactListItem />
-                          <ContactListItem />
-                          <ContactListItem />
-                        </tbody>
-                      </table>
+                      {/* Contact toolbar left -------------------->  */}
+                      {/* -------------------------------------->  */}
+                      <div className="d-flex gap-3 mb-4 mt-2 align-items-center">
+                        <div className="d-xxl-flex d-none align-items-center">
+                          <select className="form-select form-select-sm w-120p">
+                            <option selected>Bulk actions</option>
+                            <option value="1">Edit</option>
+                            <option value="2">Move to trash</option>
+                          </select>
+                          <button className="btn btn-sm btn-light ms-2">
+                            Apply
+                          </button>
+                        </div>
+                        <div className="d-xxl-flex d-none align-items-center form-group mb-0">
+                          <label className="flex-shrink-0 mb-0 me-2">
+                            Sort by:
+                          </label>
+                          <select className="form-select form-select-sm w-130p">
+                            <option selected>Date Created</option>
+                            <option value="1">Date Edited</option>
+                            <option value="2">Frequent Contacts</option>
+                            <option value="3">Recently Added</option>
+                          </select>
+                        </div>
+                        <select className="d-flex align-items-center w-130p form-select form-select-sm">
+                          <option selected>Export to CSV</option>
+                          <option value="2">Export to PDF</option>
+                          <option value="3">Send Message</option>
+                          <option value="4">Delegate Access</option>
+                        </select>
+                      </div>
+
+                      {/* Data table ----------------------------------->  */}
+                      {/* ----------------------------------------------> */}
+                      <DataTable
+                        className="custom-checkbox"
+                        columns={columns}
+                        data={data}
+                        pagination
+                        highlightOnHover
+                        selectableRows
+                        customStyles={customStyles}
+                      />
                     </div>
-                  </div>
+                  </SimpleBar>
                 </div>
               </div>
               {/* <!-- Edit Info --> */}
@@ -1003,6 +1042,6 @@ export default function ContactList() {
         {/* <!-- /Page Body --> */}
       </div>
       {/* <!-- /Main Content --> */}
-    </Layout>
+    </section>
   );
 }

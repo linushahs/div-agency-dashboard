@@ -1,5 +1,7 @@
 import { useState } from "react";
 import Layout from "./layout/Layout";
+import { Outlet } from "react-router-dom";
+
 import "./scss/style.scss";
 
 function App() {
@@ -7,8 +9,8 @@ function App() {
 
   return (
     <Layout navLayout={navLayout} setNavLayout={setNavLayout}>
-      {/* Dashboard ----->  */}
-      <div>Hello</div>
+      {/* Main Content ----->  */}
+      <Outlet />
     </Layout>
   );
 }
