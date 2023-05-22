@@ -6,6 +6,7 @@ import ErrorPage from "./404.tsx";
 import ContactList from "./features/contact/ContactList.tsx";
 import EditContact from "./features/contact/EditContact.tsx";
 import InvoiceList from "./features/invoice/InvoiceList.tsx";
+import CreateInvoice from "./features/invoice/CreateInvoice.tsx";
 
 const router = createBrowserRouter([
   {
@@ -24,6 +25,10 @@ const router = createBrowserRouter([
       {
         path: "/invoice",
         element: <InvoiceList />,
+      },
+      {
+        path: "/create-invoice",
+        element: <CreateInvoice />,
       },
     ],
   },
