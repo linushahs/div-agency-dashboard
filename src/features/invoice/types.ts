@@ -18,6 +18,19 @@ export type Client = {
   address2: string;
 };
 
+export type PayloadType = {
+  payload: {
+    invoice: Invoice;
+  };
+};
+
+export type ClientPayloadType = {
+  payload: {
+    invoiceIndex: number;
+    client: Client;
+  };
+};
+
 export interface Invoice {
   invoiceNo: number;
   invoiceDate: string;
@@ -27,8 +40,8 @@ export interface Invoice {
   //business information
   businessInfo: BusinessInfo;
 
-  //business information
-  //   clients: Client[];
+  //client information
+  clients: Client[];
 
   //   shippingAddress: string;
 

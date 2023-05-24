@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import SimpleBar from "simplebar-react";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import InvoiceSidebar from "./InvoiceSidebar";
-import { createInvoice } from "./invoiceSlice";
+import { addClient, createInvoice } from "./invoiceSlice";
 
 export default function CreateInvoice() {
   const [toggleSidebar, setToggleSidebar] = useState(false);
@@ -30,6 +30,23 @@ export default function CreateInvoice() {
     invoiceList[0].businessInfo
   );
 
+  //client information state variables
+  const [selectedClient, setSelectedClient] = useState(
+    invoiceList[0].clients[0]
+  );
+  const [clientInformation, setClientInformation] = useState();
+
+  //addNewClient function
+  const addNewClient = () => {
+    dispatch(addClient({ invoiceIndex: 0, client: clientInformation }));
+  };
+
+  //editClientInfo function
+  // const editClientInfo = () => {
+
+  // }
+
+  //handleChange function
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement>,
     target: string
