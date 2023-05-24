@@ -1,16 +1,56 @@
 import clsx from "clsx";
-import { useState } from "react";
+import React, { useState } from "react";
 import { Modal } from "react-bootstrap";
-import { ChevronDown, ChevronUp, Edit2, Sliders } from "react-feather";
+import { ChevronDown, ChevronUp, Sliders } from "react-feather";
 import { Link } from "react-router-dom";
 import SimpleBar from "simplebar-react";
+import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import InvoiceSidebar from "./InvoiceSidebar";
+import { createInvoice } from "./invoiceSlice";
 
 export default function CreateInvoice() {
   const [toggleSidebar, setToggleSidebar] = useState(false);
   const [toggleSetting, setToggleSetting] = useState(false);
   const [showEditModal, setShowEditModal] = useState(false);
   const [showBilledEditModal, setShowBilledEditModal] = useState(false);
+
+  const dispatch = useAppDispatch();
+  const invoiceList = useAppSelector((state) => state.invoice.invoices);
+  //state variables
+  const [invoice, setInvoice] = useState({
+    invoiceNo: 1,
+    invoiceDate: "2021-07-01",
+    dueDate: "2021-07-06",
+    customerNo: 1,
+
+    businessInfo: invoiceList[0].businessInfo,
+  });
+
+  const [businessInformation, setBusinessInformation] = useState(
+    invoiceList[0].businessInfo
+  );
+
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement>,
+    target: string
+  ) => {
+    setInvoice({ ...invoice, [target]: e.target.value });
+  };
+
+  const handleBusinessInfoChange = (
+    e: React.ChangeEvent<HTMLInputElement>,
+    target: string
+  ) => {
+    setBusinessInformation({
+      ...businessInformation,
+      [target]: e.target.value,
+    });
+  };
+
+  const editBusinessInfo = () => {
+    setInvoice({ ...invoice, businessInfo: businessInformation });
+    setShowEditModal(false);
+  };
 
   return (
     <div className="hk-pg-wrapper pb-0">
@@ -51,6 +91,7 @@ export default function CreateInvoice() {
                   <a
                     href="#"
                     className="btn btn-primary ms-2 d-sm-inline-block d-none"
+                    onClick={() => dispatch(createInvoice({ invoice }))}
                   >
                     save
                   </a>
@@ -95,16 +136,6 @@ export default function CreateInvoice() {
                         </div>
                         <div className="col-lg-4 offset-lg-5 offset-md-3 col-md-4 mb-md-0 mb-4">
                           <h2 className="d-flex align-items-center justify-content-md-end mb-0 inline-editable-wrap">
-                            <a
-                              className="btn btn-sm btn-icon btn-flush-light btn-rounded flush-soft-hover edit-tyn ms-md-5"
-                              href="#"
-                            >
-                              <span className="icon">
-                                <span className="feather-icon">
-                                  <Edit2 />
-                                </span>
-                              </span>
-                            </a>
                             <span className="editable">Invoice</span>
                           </h2>
                         </div>
@@ -122,11 +153,10 @@ export default function CreateInvoice() {
                           </a>
                           <div className="collapse show" id="address_collpase">
                             <div className="address-wrap">
-                              <h6>Hencework</h6>
-                              <p>4747, Pearl Street</p>
-                              <p>Rainy Day Drive, </p>
-                              <p>Washington DC 42156</p>
-                              <p>jampack_01@hencework.com</p>
+                              <h6>{invoice.businessInfo.name}</h6>
+                              <p>{invoice.businessInfo.address1}</p>
+                              <p>{invoice.businessInfo.address2} </p>
+                              <p>{invoice.businessInfo.email}</p>
                             </div>
                             <a
                               className="d-inline-flex align-items-center mt-2"
@@ -148,8 +178,9 @@ export default function CreateInvoice() {
                               <div className="col-lg-6 form-group">
                                 <input
                                   className="form-control"
-                                  value="0001"
-                                  type="text"
+                                  value={invoice.invoiceNo}
+                                  type="number"
+                                  onChange={(e) => handleChange(e, "invoiceNo")}
                                 />
                               </div>
                             </div>
@@ -163,8 +194,11 @@ export default function CreateInvoice() {
                                 <input
                                   className="form-control"
                                   name="single-date-pick"
-                                  value="24/2/2020"
-                                  type="text"
+                                  value={invoice.invoiceDate}
+                                  type="date"
+                                  onChange={(e) =>
+                                    handleChange(e, "invoiceDate")
+                                  }
                                 />
                               </div>
                             </div>
@@ -173,12 +207,13 @@ export default function CreateInvoice() {
                                 <span className="form-control">Due Date*</span>
                               </div>
                               <div className="col-lg-6 form-group">
-                                <select className="form-select">
-                                  <option selected>Due on Reciept</option>
-                                  <option value="1">One</option>
-                                  <option value="2">Two</option>
-                                  <option value="3">Three</option>
-                                </select>
+                                <input
+                                  className="form-control"
+                                  name="single-date-pick"
+                                  value={invoice.dueDate}
+                                  type="date"
+                                  onChange={(e) => handleChange(e, "dueDate")}
+                                />
                               </div>
                             </div>
                             <div className="row gx-3">
@@ -190,8 +225,11 @@ export default function CreateInvoice() {
                               <div className="col-lg-6 form-group">
                                 <input
                                   className="form-control"
-                                  value="32321"
-                                  type="text"
+                                  value={invoice.customerNo}
+                                  type="number"
+                                  onChange={(e) =>
+                                    handleChange(e, "customerNo")
+                                  }
                                 />
                               </div>
                             </div>
@@ -342,9 +380,7 @@ export default function CreateInvoice() {
                             <thead className="thead-primary">
                               <tr>
                                 <th>Item</th>
-                                <th>Quantity</th>
                                 <th>Price</th>
-                                <th colSpan={2}>Discount</th>
                                 <th>Amount</th>
                               </tr>
                             </thead>
@@ -360,13 +396,7 @@ export default function CreateInvoice() {
                                     value="Redesiging of agencyclick.com"
                                   />
                                 </td>
-                                <td className="border-end-0 border-bottom-0">
-                                  <input
-                                    type="text"
-                                    className="form-control qty"
-                                    value="1"
-                                  />
-                                </td>
+
                                 <td className="w-15 border-end-0 border-bottom-0">
                                   <input
                                     type="text"
@@ -374,19 +404,7 @@ export default function CreateInvoice() {
                                     value="150.00"
                                   />
                                 </td>
-                                <td className="border-end-0 border-bottom-0">
-                                  <input
-                                    type="text"
-                                    className="form-control discount w-60p"
-                                    value="2"
-                                  />
-                                </td>
-                                <td className="border-end-0 border-bottom-0">
-                                  <select className="form-select disc-type w-70p">
-                                    <option value="1">%</option>
-                                    <option value="2">₹</option>
-                                  </select>
-                                </td>
+
                                 <td
                                   className="w-20  rounded-end  bg-primary-light-5 close-over position-relative"
                                   rowSpan={2}
@@ -437,77 +455,9 @@ export default function CreateInvoice() {
                                   <tr>
                                     <td
                                       colSpan={3}
-                                      className="rounded-top-start border-end-0 border-bottom-0"
-                                    >
-                                      Subtotal
-                                    </td>
-                                    <td className="rounded-top-end border-bottom-0 w-30 bg-primary-light-5">
-                                      <input
-                                        type="text"
-                                        className="form-control bg-transparent border-0 p-0 gross-total"
-                                        value=""
-                                        readOnly
-                                      />
-                                    </td>
-                                  </tr>
-                                  <tr>
-                                    <td
-                                      colSpan={3}
-                                      className="border-end-0 border-bottom-0"
-                                    >
-                                      Item Discount
-                                    </td>
-                                    <td className="border-bottom-0  bg-primary-light-5">
-                                      <input
-                                        type="text"
-                                        className="form-control bg-transparent border-0 p-0 gross-discount"
-                                        value=""
-                                        readOnly
-                                      />
-                                    </td>
-                                  </tr>
-                                  <tr>
-                                    <td className="border-end-0 border-bottom-0">
-                                      Extra Discount
-                                    </td>
-                                    <td className="border-end-0 border-bottom-0 w-25">
-                                      <input
-                                        type="text"
-                                        className="form-control extdiscount"
-                                        value="0"
-                                      />
-                                    </td>
-                                    <td className="border-end-0 border-bottom-0 w-25">
-                                      <select className="form-select extra-disc-type">
-                                        <option selected value="1">
-                                          %
-                                        </option>
-                                        <option value="2">₹</option>
-                                      </select>
-                                    </td>
-                                    <td className="border-bottom-0  bg-primary-light-5">
-                                      <input
-                                        type="text"
-                                        className="form-control bg-transparent border-0 p-0 extdiscount-read"
-                                        value="0"
-                                        readOnly
-                                      />
-                                    </td>
-                                  </tr>
-                                  <tr>
-                                    <td
-                                      colSpan={3}
                                       className="rounded-bottom-start border-end-0 bg-primary-light-5"
                                     >
                                       <span className="text-dark">Total</span>
-                                    </td>
-                                    <td className="rounded-bottom-end  bg-primary-light-5">
-                                      <input
-                                        type="text"
-                                        className="form-control bg-transparent border-0 p-0 subtotal"
-                                        value=""
-                                        readOnly
-                                      />
                                     </td>
                                   </tr>
                                 </tbody>
@@ -641,44 +591,6 @@ export default function CreateInvoice() {
                           <i className="ri-add-box-line me-1"></i> Add New Term
                           Row
                         </a>
-                      </div>
-                      <div className="separator separator-light"></div>
-                      <div className="btn btn-light btn-file mb-4">
-                        Attach files
-                        <input type="file" className="upload" />
-                      </div>
-                      <div className="my-2">
-                        <a
-                          className="d-inline-flex align-items-center"
-                          data-bs-toggle="collapse"
-                          href="#memo_collpase"
-                        >
-                          <i className="ri-add-box-line me-1"></i> Add a
-                          personal memo
-                        </a>
-                      </div>
-
-                      <div className="collapse show" id="memo_collpase">
-                        <div className="row">
-                          <div className="col-xxl-5">
-                            <div className="form-group">
-                              <div className="form-label-group">
-                                <label className="form-label">
-                                  Personal Memo
-                                </label>
-                                <small className="text-muted">1400</small>
-                              </div>
-                              <textarea
-                                className="form-control"
-                                rows={6}
-                                placeholder="Write an internal note"
-                              ></textarea>
-                              <button className="btn btn-outline-light mt-2">
-                                Add Note
-                              </button>
-                            </div>
-                          </div>
-                        </div>
                       </div>
                     </div>
                   </div>
@@ -902,7 +814,8 @@ export default function CreateInvoice() {
                     <input
                       className="form-control"
                       type="text"
-                      value="Hencework"
+                      value={businessInformation.name}
+                      onChange={(e) => handleBusinessInfoChange(e, "name")}
                     />
                   </div>
                   <div className="col-sm-12 form-group">
@@ -910,7 +823,8 @@ export default function CreateInvoice() {
                     <input
                       className="form-control"
                       type="email"
-                      value="jampack_01@hencework.com"
+                      value={businessInformation.email}
+                      onChange={(e) => handleBusinessInfoChange(e, "email")}
                     />
                   </div>
                   <div className="col-sm-12 form-group">
@@ -918,7 +832,8 @@ export default function CreateInvoice() {
                     <input
                       className="form-control"
                       type="text"
-                      value="4747, Pearl Street Rainy day Drive"
+                      value={businessInformation.address1}
+                      onChange={(e) => handleBusinessInfoChange(e, "address1")}
                     />
                   </div>
                   <div className="col-sm-12 form-group">
@@ -926,7 +841,8 @@ export default function CreateInvoice() {
                     <input
                       className="form-control"
                       type="text"
-                      value="Washington DC 42341"
+                      value={businessInformation.address2}
+                      onChange={(e) => handleBusinessInfoChange(e, "address2")}
                     />
                   </div>
                 </div>
@@ -944,8 +860,9 @@ export default function CreateInvoice() {
                 type="button"
                 className="btn btn-primary"
                 data-bs-dismiss="modal"
+                onClick={editBusinessInfo}
               >
-                Add
+                Save
               </button>
             </Modal.Footer>
           </Modal>
@@ -968,7 +885,8 @@ export default function CreateInvoice() {
                     <input
                       className="form-control"
                       type="text"
-                      value="Supernova Consultants"
+                      value={invoice.businessInfo.name}
+                      onChange={(e) => handleChange(e, "name")}
                     />
                   </div>
                   <div className="col-sm-12 form-group">
@@ -976,7 +894,8 @@ export default function CreateInvoice() {
                     <input
                       className="form-control"
                       type="email"
-                      value="thompson_peter@super.co"
+                      value={invoice.businessInfo.email}
+                      onChange={(e) => handleChange(e, "email")}
                     />
                   </div>
                   <div className="col-sm-12 form-group">
@@ -984,7 +903,8 @@ export default function CreateInvoice() {
                     <input
                       className="form-control"
                       type="text"
-                      value="Sycamore Street"
+                      value={invoice.businessInfo.address1}
+                      onChange={(e) => handleChange(e, "address1")}
                     />
                   </div>
                   <div className="col-sm-12 form-group">
@@ -992,7 +912,8 @@ export default function CreateInvoice() {
                     <input
                       className="form-control"
                       type="text"
-                      value="San Antonio Valley, CA 34668"
+                      value={invoice.businessInfo.address2}
+                      onChange={(e) => handleChange(e, "address2")}
                     />
                   </div>
                 </div>
