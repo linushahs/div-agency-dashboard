@@ -1,7 +1,16 @@
-export type Item = {
+export type ItemType = {
   title: string;
   description: string;
   price: number;
+};
+
+export type EditItemPayload<T> = {
+  payload: {
+    invoiceIndex: number;
+    itemIndex: number;
+    itemKey: keyof T;
+    value: T[keyof T];
+  };
 };
 
 export type BusinessInfo = {
@@ -9,20 +18,6 @@ export type BusinessInfo = {
   email: string;
   address1: string;
   address2: string;
-};
-
-export type ClientPayloadType = {
-  payload: {
-    invoiceIndex: number;
-    client: Client;
-  };
-};
-
-export type BusinessPayloadType = {
-  payload: {
-    invoiceIndex: number;
-    business: BusinessInfo;
-  };
 };
 
 export type Client = {
@@ -52,8 +47,8 @@ export interface Invoice {
 
   //   shippingAddress: string;
 
-  //   //items
-  //   items: Item[];
+  //items
+  items: ItemType[];
 
   //   signatureImgURL: string;
   //   sender: {

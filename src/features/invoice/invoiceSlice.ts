@@ -1,6 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { BusinessPayloadType, Invoice } from "./types";
-import { PayloadType, ClientPayloadType } from "./types";
+import { EditItemPayload, Invoice, ItemType } from "./types";
 
 interface InvoiceState {
   invoices: Invoice[];
@@ -29,6 +28,15 @@ const initialState: InvoiceState = {
         address1: "Kathmandu, Nepal",
         address2: "Street No 4252",
       },
+
+      items: [
+        {
+          title: "Redesiging of agencyclick.com",
+          description:
+            "This is my project description. if the line do not filt like the sentence is to big the area will start getting bigger",
+          price: 150,
+        },
+      ],
     },
   ],
   loading: false,
@@ -39,13 +47,10 @@ const invoiceSlice = createSlice({
   name: "invoice",
   initialState,
   reducers: {
-    createInvoice: (state: InvoiceState, { payload }: PayloadType) => {
+    createInvoice: (state: InvoiceState, { payload }) => {
       state.invoices = [...state.invoices, payload.invoice];
     },
-    saveClientInformation: (
-      state: InvoiceState,
-      { payload }: ClientPayloadType
-    ) => {
+    saveClientInformation: (state: InvoiceState, { payload }) => {
       const { invoiceIndex, client } = payload;
       const invoice = state.invoices[invoiceIndex];
 
@@ -62,10 +67,7 @@ const invoiceSlice = createSlice({
       // Update the state with the modified invoices array
       state.invoices = updatedInvoices;
     },
-    saveBusinessInformation: (
-      state: InvoiceState,
-      { payload }: BusinessPayloadType
-    ) => {
+    saveBusinessInformation: (state: InvoiceState, { payload }) => {
       const { invoiceIndex, business } = payload;
       const invoice = state.invoices[invoiceIndex];
 
@@ -82,10 +84,63 @@ const invoiceSlice = createSlice({
       // Update the state with the modified invoices array
       state.invoices = updatedInvoices;
     },
+
+    editItem: <T extends ItemType>(
+      state: InvoiceState,
+      { payload }: EditItemPayload<T>
+    ) => {
+      const { invoiceIndex, itemIndex, itemKey, value } = payload;
+
+      // Create a copy of the invoices array to avoid mutating the state directly
+      const updatedInvoices = [...state.invoices];
+
+      // Retrieve the specific invoice based on the invoiceIndex
+      const invoice = updatedInvoices[invoiceIndex];
+
+      // Retrieve the specific item based on the itemIndex within the invoice
+      const updatedItem = { ...invoice.items[itemIndex] } as T;
+      updatedItem[itemKey] = value;
+
+      // Update the item within the invoice
+      invoice.items[itemIndex] = updatedItem;
+
+      // update the updatedInvoices array
+      updatedInvoices[invoiceIndex] = invoice;
+
+      state.invoices = updatedInvoices;
+    },
+    addItem: (state: InvoiceState, { payload }) => {
+      const { invoiceIndex, item } = payload;
+
+      // Create a copy of the invoices array to avoid mutating the state directly
+      const updatedInvoices = [...state.invoices];
+
+      // Retrieve the specific invoice based on the invoiceIndex
+      const invoice = updatedInvoices[invoiceIndex];
+
+      // Create a copy of the items array within the invoice to avoid mutating the state directly
+      const updatedItems = [...invoice.items];
+
+      // Add the new item to the items array
+      updatedItems.push(item);
+
+      // Update the items within the invoice
+      invoice.items = updatedItems;
+
+      // update the updatedInvoices array
+      updatedInvoices[invoiceIndex] = invoice;
+
+      state.invoices = updatedInvoices;
+    },
   },
 });
 
-export const { createInvoice, saveClientInformation, saveBusinessInformation } =
-  invoiceSlice.actions;
+export const {
+  createInvoice,
+  saveClientInformation,
+  saveBusinessInformation,
+  editItem,
+  addItem,
+} = invoiceSlice.actions;
 
 export default invoiceSlice.reducer;

@@ -7,10 +7,12 @@ import SimpleBar from "simplebar-react";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import InvoiceSidebar from "./InvoiceSidebar";
 import {
+  addItem,
   createInvoice,
   saveBusinessInformation,
   saveClientInformation,
 } from "./invoiceSlice";
+import InvoiceItem from "./InvoiceItem";
 
 export default function CreateInvoice() {
   const [toggleSidebar, setToggleSidebar] = useState(false);
@@ -22,6 +24,7 @@ export default function CreateInvoice() {
   const invoiceList = useAppSelector((state) => state.invoice.invoices);
   const businessInfo = invoiceList[0].businessInfo;
   const clientInfo = invoiceList[0].clientInfo;
+  const items = invoiceList[0].items;
 
   //state variables
   const [invoice, setInvoice] = useState({
@@ -82,6 +85,16 @@ export default function CreateInvoice() {
     );
 
     setShowBilledEditModal(false);
+  };
+
+  //add new item to the invoice
+  const addNewItem = () => {
+    dispatch(
+      addItem({
+        invoiceIndex: 0,
+        item: { title: "", description: "", price: 0 },
+      })
+    );
   };
 
   return (
@@ -396,65 +409,23 @@ export default function CreateInvoice() {
                               <tr>
                                 <th>Item</th>
                                 <th>Price</th>
-                                <th>Amount</th>
+                                <th></th>
                               </tr>
                             </thead>
                             <tbody>
                               <tr className="table-row-gap">
                                 <td></td>
                               </tr>
-                              <tr>
-                                <td className="w-70 rounded-top-start border-end-0 border-bottom-0">
-                                  <input
-                                    type="text"
-                                    className="form-control"
-                                    value="Redesiging of agencyclick.com"
-                                  />
-                                </td>
 
-                                <td className="w-15 border-end-0 border-bottom-0">
-                                  <input
-                                    type="text"
-                                    className="form-control price"
-                                    value="150.00"
-                                  />
-                                </td>
-
-                                <td
-                                  className="w-20  rounded-end  bg-primary-light-5 close-over position-relative"
-                                  rowSpan={2}
-                                >
-                                  <input
-                                    type="text"
-                                    className="form-control bg-transparent border-0 p-0 total"
-                                    value=""
-                                    readOnly
-                                  />
-                                  <button
-                                    type="button"
-                                    className="close-row btn-close"
-                                  >
-                                    <span aria-hidden="true">×</span>
-                                  </button>
-                                </td>
-                              </tr>
-                              <tr>
-                                <td
-                                  colSpan={5}
-                                  className="rounded-bottom-start border-end-0"
-                                >
-                                  <input
-                                    type="text"
-                                    className="form-control"
-                                    value="This is my project description. if the line do not filt like the sentence is to big the area will start getting bigger"
-                                  />
-                                </td>
-                              </tr>
+                              {items.map((item, id) => (
+                                <InvoiceItem key={id} item={item} index={id} />
+                              ))}
                             </tbody>
                           </table>
                           <a
                             className="d-inline-flex align-items-center add-new-row"
                             href="#"
+                            onClick={() => addNewItem()}
                           >
                             <i className="ri-add-box-line me-1"></i> Add new
                             item
