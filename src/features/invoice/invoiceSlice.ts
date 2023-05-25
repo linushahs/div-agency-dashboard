@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { Invoice } from "./types";
+import { BusinessPayloadType, Invoice } from "./types";
 import { PayloadType, ClientPayloadType } from "./types";
 
 interface InvoiceState {
@@ -23,14 +23,12 @@ const initialState: InvoiceState = {
         address2: "Street No 4252",
       },
 
-      clients: [
-        {
-          name: "Div Agency",
-          email: "divagency@gmail.com",
-          address1: "Kathmandu, Nepal",
-          address2: "Street No 4252",
-        },
-      ],
+      clientInfo: {
+        name: "Div Agency",
+        email: "divagency@gmail.com",
+        address1: "Kathmandu, Nepal",
+        address2: "Street No 4252",
+      },
     },
   ],
   loading: false,
@@ -44,17 +42,37 @@ const invoiceSlice = createSlice({
     createInvoice: (state: InvoiceState, { payload }: PayloadType) => {
       state.invoices = [...state.invoices, payload.invoice];
     },
-    addClient: (state: InvoiceState, { payload }: ClientPayloadType) => {
+    saveClientInformation: (
+      state: InvoiceState,
+      { payload }: ClientPayloadType
+    ) => {
       const { invoiceIndex, client } = payload;
       const invoice = state.invoices[invoiceIndex];
-
-      // Create a copy of the clients array and add the new client
-      const updatedClients = [...invoice.clients, client];
 
       // Create a copy of the invoice object with the updated clients array
       const updatedInvoice = {
         ...invoice,
-        clients: updatedClients,
+        clientInfo: client,
+      };
+
+      // Create a copy of the invoices array and update the specific invoice
+      const updatedInvoices = [...state.invoices];
+      updatedInvoices[invoiceIndex] = updatedInvoice;
+
+      // Update the state with the modified invoices array
+      state.invoices = updatedInvoices;
+    },
+    saveBusinessInformation: (
+      state: InvoiceState,
+      { payload }: BusinessPayloadType
+    ) => {
+      const { invoiceIndex, business } = payload;
+      const invoice = state.invoices[invoiceIndex];
+
+      // Create a copy of the invoice object with the updated clients array
+      const updatedInvoice = {
+        ...invoice,
+        businessInfo: business,
       };
 
       // Create a copy of the invoices array and update the specific invoice
@@ -67,6 +85,7 @@ const invoiceSlice = createSlice({
   },
 });
 
-export const { createInvoice, addClient } = invoiceSlice.actions;
+export const { createInvoice, saveClientInformation, saveBusinessInformation } =
+  invoiceSlice.actions;
 
 export default invoiceSlice.reducer;

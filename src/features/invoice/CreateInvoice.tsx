@@ -6,7 +6,11 @@ import { Link } from "react-router-dom";
 import SimpleBar from "simplebar-react";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import InvoiceSidebar from "./InvoiceSidebar";
-import { addClient, createInvoice } from "./invoiceSlice";
+import {
+  createInvoice,
+  saveBusinessInformation,
+  saveClientInformation,
+} from "./invoiceSlice";
 
 export default function CreateInvoice() {
   const [toggleSidebar, setToggleSidebar] = useState(false);
@@ -16,35 +20,19 @@ export default function CreateInvoice() {
 
   const dispatch = useAppDispatch();
   const invoiceList = useAppSelector((state) => state.invoice.invoices);
+  const businessInfo = invoiceList[0].businessInfo;
+  const clientInfo = invoiceList[0].clientInfo;
+
   //state variables
   const [invoice, setInvoice] = useState({
     invoiceNo: 1,
     invoiceDate: "2021-07-01",
     dueDate: "2021-07-06",
     customerNo: 1,
-
-    businessInfo: invoiceList[0].businessInfo,
   });
 
-  const [businessInformation, setBusinessInformation] = useState(
-    invoiceList[0].businessInfo
-  );
-
-  //client information state variables
-  const [selectedClient, setSelectedClient] = useState(
-    invoiceList[0].clients[0]
-  );
-  const [clientInformation, setClientInformation] = useState();
-
-  //addNewClient function
-  const addNewClient = () => {
-    dispatch(addClient({ invoiceIndex: 0, client: clientInformation }));
-  };
-
-  //editClientInfo function
-  // const editClientInfo = () => {
-
-  // }
+  const [businessInformation, setBusinessInformation] = useState(businessInfo);
+  const [clientInformation, setClientInformation] = useState(clientInfo);
 
   //handleChange function
   const handleChange = (
@@ -54,7 +42,9 @@ export default function CreateInvoice() {
     setInvoice({ ...invoice, [target]: e.target.value });
   };
 
-  const handleBusinessInfoChange = (
+  //edit business info and save it
+  //==============================
+  const editBusinessInfo = (
     e: React.ChangeEvent<HTMLInputElement>,
     target: string
   ) => {
@@ -64,9 +54,34 @@ export default function CreateInvoice() {
     });
   };
 
-  const editBusinessInfo = () => {
-    setInvoice({ ...invoice, businessInfo: businessInformation });
+  const saveBusinessInfo = () => {
+    //save business info
+    dispatch(
+      saveBusinessInformation({
+        invoiceIndex: 0,
+        business: businessInformation,
+      })
+    );
+
     setShowEditModal(false);
+  };
+
+  //edit client info and save it
+  //===========================
+  const editClientInfo = (
+    e: React.ChangeEvent<HTMLInputElement>,
+    target: string
+  ) => {
+    setClientInformation({ ...clientInformation, [target]: e.target.value });
+  };
+
+  const saveClientInfo = () => {
+    //save client info in redux store
+    dispatch(
+      saveClientInformation({ invoiceIndex: 0, client: clientInformation })
+    );
+
+    setShowBilledEditModal(false);
   };
 
   return (
@@ -170,10 +185,10 @@ export default function CreateInvoice() {
                           </a>
                           <div className="collapse show" id="address_collpase">
                             <div className="address-wrap">
-                              <h6>{invoice.businessInfo.name}</h6>
-                              <p>{invoice.businessInfo.address1}</p>
-                              <p>{invoice.businessInfo.address2} </p>
-                              <p>{invoice.businessInfo.email}</p>
+                              <h6>{businessInfo.name}</h6>
+                              <p>{businessInfo.address1}</p>
+                              <p>{businessInfo.address2} </p>
+                              <p>{businessInfo.email}</p>
                             </div>
                             <a
                               className="d-inline-flex align-items-center mt-2"
@@ -289,35 +304,18 @@ export default function CreateInvoice() {
                       <div className="row">
                         <div className="col-xxl-3 mb-xxl-0 mb-4">
                           <h6>Billed To</h6>
-                          <form>
-                            <div className="form-group">
-                              <select className="form-select">
-                                <option selected>Supernova consultant</option>
-                                <option value="1">One</option>
-                                <option value="2">Two</option>
-                                <option value="3">Three</option>
-                              </select>
-                            </div>
-                            <a
-                              className="d-inline-flex align-items-center"
-                              href="#"
-                              onClick={() => setShowBilledEditModal(true)}
-                            >
-                              <i className="ri-add-box-line me-1"></i> Add new
-                              client
-                            </a>
-                          </form>
+
                           <div className="Billto-wrap mt-4">
-                            <h6>Supernova consultant</h6>
-                            <p>Sycamore Street</p>
-                            <p>San Antonio Valley,</p>
-                            <p>CA 34668</p>
-                            <p>thompson_peter@super.co</p>
+                            <h6>{clientInfo.name}</h6>
+                            <p>{clientInfo.address1}</p>
+                            <p>{clientInfo.address2}</p>
+                            <p>{clientInfo.email}</p>
                           </div>
                           <a
                             className="d-inline-flex align-items-center mt-2"
                             data-bs-toggle="modal"
                             data-bs-target="#billed_info"
+                            onClick={() => setShowBilledEditModal(true)}
                             href="#"
                           >
                             <i className="ri-pencil-line me-1"></i> Edit Info
@@ -832,7 +830,7 @@ export default function CreateInvoice() {
                       className="form-control"
                       type="text"
                       value={businessInformation.name}
-                      onChange={(e) => handleBusinessInfoChange(e, "name")}
+                      onChange={(e) => editBusinessInfo(e, "name")}
                     />
                   </div>
                   <div className="col-sm-12 form-group">
@@ -841,7 +839,7 @@ export default function CreateInvoice() {
                       className="form-control"
                       type="email"
                       value={businessInformation.email}
-                      onChange={(e) => handleBusinessInfoChange(e, "email")}
+                      onChange={(e) => editBusinessInfo(e, "email")}
                     />
                   </div>
                   <div className="col-sm-12 form-group">
@@ -850,7 +848,7 @@ export default function CreateInvoice() {
                       className="form-control"
                       type="text"
                       value={businessInformation.address1}
-                      onChange={(e) => handleBusinessInfoChange(e, "address1")}
+                      onChange={(e) => editBusinessInfo(e, "address1")}
                     />
                   </div>
                   <div className="col-sm-12 form-group">
@@ -859,7 +857,7 @@ export default function CreateInvoice() {
                       className="form-control"
                       type="text"
                       value={businessInformation.address2}
-                      onChange={(e) => handleBusinessInfoChange(e, "address2")}
+                      onChange={(e) => editBusinessInfo(e, "address2")}
                     />
                   </div>
                 </div>
@@ -877,7 +875,7 @@ export default function CreateInvoice() {
                 type="button"
                 className="btn btn-primary"
                 data-bs-dismiss="modal"
-                onClick={editBusinessInfo}
+                onClick={saveBusinessInfo}
               >
                 Save
               </button>
@@ -902,8 +900,8 @@ export default function CreateInvoice() {
                     <input
                       className="form-control"
                       type="text"
-                      value={invoice.businessInfo.name}
-                      onChange={(e) => handleChange(e, "name")}
+                      value={clientInformation.name}
+                      onChange={(e) => editClientInfo(e, "name")}
                     />
                   </div>
                   <div className="col-sm-12 form-group">
@@ -911,8 +909,8 @@ export default function CreateInvoice() {
                     <input
                       className="form-control"
                       type="email"
-                      value={invoice.businessInfo.email}
-                      onChange={(e) => handleChange(e, "email")}
+                      value={clientInformation.email}
+                      onChange={(e) => editClientInfo(e, "email")}
                     />
                   </div>
                   <div className="col-sm-12 form-group">
@@ -920,8 +918,8 @@ export default function CreateInvoice() {
                     <input
                       className="form-control"
                       type="text"
-                      value={invoice.businessInfo.address1}
-                      onChange={(e) => handleChange(e, "address1")}
+                      value={clientInformation.address1}
+                      onChange={(e) => editClientInfo(e, "address1")}
                     />
                   </div>
                   <div className="col-sm-12 form-group">
@@ -929,8 +927,8 @@ export default function CreateInvoice() {
                     <input
                       className="form-control"
                       type="text"
-                      value={invoice.businessInfo.address2}
-                      onChange={(e) => handleChange(e, "address2")}
+                      value={clientInformation.address2}
+                      onChange={(e) => editClientInfo(e, "address2")}
                     />
                   </div>
                 </div>
@@ -948,8 +946,9 @@ export default function CreateInvoice() {
                 type="button"
                 className="btn btn-primary"
                 data-bs-dismiss="modal"
+                onClick={() => saveClientInfo()}
               >
-                Add
+                Save
               </button>
             </Modal.Footer>
           </Modal>
