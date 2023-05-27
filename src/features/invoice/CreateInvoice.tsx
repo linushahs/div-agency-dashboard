@@ -5,48 +5,53 @@ import { ChevronDown, ChevronUp, Sliders } from "react-feather";
 import { Link } from "react-router-dom";
 import SimpleBar from "simplebar-react";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
+import InvoiceItem from "./InvoiceItem";
 import InvoiceSidebar from "./InvoiceSidebar";
 import {
   addItem,
-  createInvoice,
-  saveBusinessInformation,
-  saveClientInformation,
+  addTermsAndCondition,
+  editInvoice,
+  editSenderDetails,
+  editShippingDetails,
+  editTermsAndCondition,
+  removeTermsAndCondition,
+  saveInvoiceDetails,
 } from "./invoiceSlice";
-import InvoiceItem from "./InvoiceItem";
+import { Invoice, ShippingAddress } from "./types";
 
 export default function CreateInvoice() {
+  //state variables
   const [toggleSidebar, setToggleSidebar] = useState(false);
   const [toggleSetting, setToggleSetting] = useState(false);
   const [showEditModal, setShowEditModal] = useState(false);
   const [showBilledEditModal, setShowBilledEditModal] = useState(false);
+  const [showShippingSection, setShowShippingSection] = useState(false);
+  const [showNameAndLabel, setShowNameAndLabel] = useState(true);
 
+  //redux state variables
   const dispatch = useAppDispatch();
-  const invoiceList = useAppSelector((state) => state.invoice.invoices);
-  const businessInfo = invoiceList[0].businessInfo;
-  const clientInfo = invoiceList[0].clientInfo;
-  const items = invoiceList[0].items;
-
-  //state variables
-  const [invoice, setInvoice] = useState({
-    invoiceNo: 1,
-    invoiceDate: "2021-07-01",
-    dueDate: "2021-07-06",
-    customerNo: 1,
-  });
+  const invoice = useAppSelector((state) => state.invoice.invoice);
+  const businessInfo = invoice.businessInfo;
+  const clientInfo = invoice.clientInfo;
+  const items = invoice.items;
 
   const [businessInformation, setBusinessInformation] = useState(businessInfo);
   const [clientInformation, setClientInformation] = useState(clientInfo);
 
-  //handleChange function
-  const handleChange = (
+  //edit invoice basic details
+  const editInvoiceDetails = <K extends keyof Invoice>(
     e: React.ChangeEvent<HTMLInputElement>,
-    target: string
+    key: K
   ) => {
-    setInvoice({ ...invoice, [target]: e.target.value });
+    dispatch(
+      saveInvoiceDetails({
+        key,
+        value: e.target.value,
+      })
+    );
   };
 
-  //edit business info and save it
-  //==============================
+  //edit business info
   const editBusinessInfo = (
     e: React.ChangeEvent<HTMLInputElement>,
     target: string
@@ -57,12 +62,12 @@ export default function CreateInvoice() {
     });
   };
 
+  //save business info
   const saveBusinessInfo = () => {
-    //save business info
     dispatch(
-      saveBusinessInformation({
-        invoiceIndex: 0,
-        business: businessInformation,
+      editInvoice({
+        key: "businessInfo",
+        value: businessInformation,
       })
     );
 
@@ -70,7 +75,6 @@ export default function CreateInvoice() {
   };
 
   //edit client info and save it
-  //===========================
   const editClientInfo = (
     e: React.ChangeEvent<HTMLInputElement>,
     target: string
@@ -78,11 +82,9 @@ export default function CreateInvoice() {
     setClientInformation({ ...clientInformation, [target]: e.target.value });
   };
 
+  //save client info in redux store
   const saveClientInfo = () => {
-    //save client info in redux store
-    dispatch(
-      saveClientInformation({ invoiceIndex: 0, client: clientInformation })
-    );
+    dispatch(editInvoice({ key: "clientInfo", value: clientInformation }));
 
     setShowBilledEditModal(false);
   };
@@ -91,8 +93,20 @@ export default function CreateInvoice() {
   const addNewItem = () => {
     dispatch(
       addItem({
-        invoiceIndex: 0,
         item: { title: "", description: "", price: 0 },
+      })
+    );
+  };
+
+  //edit Shipping address
+  const editShippingAddress = <K extends keyof ShippingAddress>(
+    e: React.ChangeEvent<HTMLInputElement>,
+    key: K
+  ) => {
+    dispatch(
+      editShippingDetails({
+        key,
+        value: e.target.value,
       })
     );
   };
@@ -136,7 +150,6 @@ export default function CreateInvoice() {
                   <a
                     href="#"
                     className="btn btn-primary ms-2 d-sm-inline-block d-none"
-                    onClick={() => dispatch(createInvoice({ invoice }))}
                   >
                     save
                   </a>
@@ -212,7 +225,7 @@ export default function CreateInvoice() {
                             </a>
                           </div>
                         </div>
-                        <div className="col-xxl-4 offset-xxl-5 mt-xxl-0 mt-6">
+                        <div className="col-xxl-5 offset-xxl-4 mt-xxl-0 mt-6">
                           <form>
                             <div className="row gx-3">
                               <div className="col-lg-6 form-group">
@@ -225,7 +238,9 @@ export default function CreateInvoice() {
                                   className="form-control"
                                   value={invoice.invoiceNo}
                                   type="number"
-                                  onChange={(e) => handleChange(e, "invoiceNo")}
+                                  onChange={(e) =>
+                                    editInvoiceDetails(e, "invoiceNo")
+                                  }
                                 />
                               </div>
                             </div>
@@ -242,7 +257,7 @@ export default function CreateInvoice() {
                                   value={invoice.invoiceDate}
                                   type="date"
                                   onChange={(e) =>
-                                    handleChange(e, "invoiceDate")
+                                    editInvoiceDetails(e, "invoiceDate")
                                   }
                                 />
                               </div>
@@ -257,7 +272,9 @@ export default function CreateInvoice() {
                                   name="single-date-pick"
                                   value={invoice.dueDate}
                                   type="date"
-                                  onChange={(e) => handleChange(e, "dueDate")}
+                                  onChange={(e) =>
+                                    editInvoiceDetails(e, "dueDate")
+                                  }
                                 />
                               </div>
                             </div>
@@ -273,7 +290,7 @@ export default function CreateInvoice() {
                                   value={invoice.customerNo}
                                   type="number"
                                   onChange={(e) =>
-                                    handleChange(e, "customerNo")
+                                    editInvoiceDetails(e, "customerNo")
                                   }
                                 />
                               </div>
@@ -301,14 +318,6 @@ export default function CreateInvoice() {
                                   </div>
                                 </div>
                               </div>
-                              <a
-                                data-repeater-create
-                                className="d-inline-flex align-items-center"
-                                href="#"
-                              >
-                                <i className="ri-add-box-line me-1"></i> Add
-                                more fields
-                              </a>
                             </div>
                           </form>
                         </div>
@@ -337,13 +346,16 @@ export default function CreateInvoice() {
                         <div className="col-xxl-4 offset-xxl-5">
                           <h6>Ship To</h6>
                           <div className="repeater">
-                            <div className="collapse" id="shipto_collpase">
+                            {showShippingSection && (
                               <div className="row gx-3">
                                 <div className="col-sm-12 form-group">
                                   <input
                                     className="form-control"
                                     placeholder="Client business name"
                                     type="text"
+                                    onChange={(e) =>
+                                      editShippingAddress(e, "businessName")
+                                    }
                                   />
                                 </div>
                                 <div className="col-sm-12 form-group">
@@ -351,6 +363,9 @@ export default function CreateInvoice() {
                                     className="form-control"
                                     placeholder="Address"
                                     type="text"
+                                    onChange={(e) =>
+                                      editShippingAddress(e, "address")
+                                    }
                                   />
                                 </div>
                                 <div className="col-lg-6 form-group">
@@ -358,13 +373,19 @@ export default function CreateInvoice() {
                                     className="form-control"
                                     placeholder="City"
                                     type="text"
+                                    onChange={(e) =>
+                                      editShippingAddress(e, "city")
+                                    }
                                   />
                                 </div>
                                 <div className="col-lg-6 form-group">
                                   <input
                                     className="form-control"
                                     placeholder="Postal Code"
-                                    type="text"
+                                    type="number"
+                                    onChange={(e) =>
+                                      editShippingAddress(e, "postalCode")
+                                    }
                                   />
                                 </div>
                                 <div className="col-sm-12 form-group">
@@ -372,6 +393,9 @@ export default function CreateInvoice() {
                                     className="form-control"
                                     placeholder="State"
                                     type="text"
+                                    onChange={(e) =>
+                                      editShippingAddress(e, "state")
+                                    }
                                   />
                                 </div>
                                 <div className="col-sm-12 form-group">
@@ -379,19 +403,18 @@ export default function CreateInvoice() {
                                     className="form-control"
                                     placeholder="Country"
                                     type="text"
-                                  />
-                                </div>
-                                <div className="col-sm-12 form-group">
-                                  <input
-                                    className="form-control"
-                                    placeholder="GSTIN Enter GSTIN here(optional)"
-                                    type="text"
+                                    onChange={(e) =>
+                                      editShippingAddress(e, "country")
+                                    }
                                   />
                                 </div>
                               </div>
-                            </div>
+                            )}
+
                             <a
-                              data-bs-toggle="collapse"
+                              onClick={() =>
+                                setShowShippingSection(!showShippingSection)
+                              }
                               href="#shipto_collpase"
                               className="d-inline-flex align-items-center"
                             >
@@ -439,11 +462,11 @@ export default function CreateInvoice() {
                               <table className="table table-bordered subtotal-table">
                                 <tbody>
                                   <tr>
-                                    <td
-                                      colSpan={3}
-                                      className="rounded-bottom-start border-end-0 bg-primary-light-5"
-                                    >
-                                      <span className="text-dark">Total</span>
+                                    <td className="w-50 rounded-bottom-start border-end-0 bg-primary-light-5">
+                                      <span className="text-dark">Total:</span>
+                                    </td>
+                                    <td className="w-50">
+                                      {invoice.totalPrice}
                                     </td>
                                   </tr>
                                 </tbody>
@@ -465,10 +488,15 @@ export default function CreateInvoice() {
                               className="form-control"
                               rows={6}
                               placeholder="Write an internal note"
+                              onChange={(e) =>
+                                dispatch(
+                                  editInvoice({
+                                    key: "noteToClient",
+                                    value: e.target.value,
+                                  })
+                                )
+                              }
                             ></textarea>
-                            <button className="btn btn-outline-light mt-2">
-                              Add Note
-                            </button>
                           </div>
                         </div>
                         <div className="col-xxl-4 offset-xxl-3 text-xxl-end mb-xxl-0 mb-3">
@@ -482,44 +510,49 @@ export default function CreateInvoice() {
                           <div>
                             <a
                               className="d-inline-flex align-items-center mt-2"
-                              data-bs-toggle="collapse"
                               href="#label_collpase"
+                              onClick={() =>
+                                setShowNameAndLabel(!showNameAndLabel)
+                              }
                             >
                               <i className="ri-add-box-line me-1"></i> Add Name
                               & Label
                             </a>
                           </div>
-                          <div
-                            className="collapse show mt-5"
-                            id="label_collpase"
-                          >
-                            <div className="form-group close-over">
-                              <input
-                                type="text"
-                                className="form-control"
-                                value="Katherine Zeta Jones"
-                              />
-                              <button
-                                type="button"
-                                className="close-input btn-close"
-                              >
-                                <span aria-hidden="true">×</span>
-                              </button>
+                          {showNameAndLabel && (
+                            <div className=" show mt-5">
+                              <div className="form-group close-over">
+                                <input
+                                  type="text"
+                                  className="form-control"
+                                  value={invoice.sender.name}
+                                  onChange={(e) =>
+                                    dispatch(
+                                      editSenderDetails({
+                                        key: "name",
+                                        value: e.target.value,
+                                      })
+                                    )
+                                  }
+                                />
+                              </div>
+                              <div className="form-group close-over">
+                                <input
+                                  type="text"
+                                  className="form-control"
+                                  value={invoice.sender.label}
+                                  onChange={(e) =>
+                                    dispatch(
+                                      editSenderDetails({
+                                        key: "label",
+                                        value: e.target.value,
+                                      })
+                                    )
+                                  }
+                                />
+                              </div>
                             </div>
-                            <div className="form-group close-over">
-                              <input
-                                type="text"
-                                className="form-control"
-                                value="Co-founder Hencework"
-                              />
-                              <button
-                                type="button"
-                                className="close-input btn-close"
-                              >
-                                <span aria-hidden="true">×</span>
-                              </button>
-                            </div>
-                          </div>
+                          )}
                         </div>
                       </div>
                       <div className="separator separator-light"></div>
@@ -529,50 +562,42 @@ export default function CreateInvoice() {
                           className="ps-3"
                           data-repeater-list="category-group"
                         >
-                          <li className="form-group close-over">
-                            <input
-                              type="text"
-                              className="form-control"
-                              value="Please pay within 15 days from the date of invoice, overdue interest @ 14% will be charged on delayed payments."
-                            />
-                            <button
-                              type="button"
-                              className="close-input btn-close"
-                            >
-                              <span aria-hidden="true">×</span>
-                            </button>
-                          </li>
-                          <li className="form-group close-over">
-                            <input
-                              type="text"
-                              className="form-control"
-                              value="Please quote invoice number when remitting funds."
-                            />
-                            <button
-                              type="button"
-                              className="close-input btn-close"
-                            >
-                              <span aria-hidden="true">×</span>
-                            </button>
-                          </li>
-                          <li
-                            data-repeater-item
-                            style={{ display: "none" }}
-                            className="form-group close-over"
-                          >
-                            <input type="text" className="form-control" />
-                            <button
-                              type="button"
-                              className="close-input btn-close"
-                            >
-                              <span aria-hidden="true">×</span>
-                            </button>
-                          </li>
+                          {invoice.termsAndConditions.map((term, id) => (
+                            <li key={id} className="form-group close-over">
+                              <input
+                                type="text"
+                                className="form-control"
+                                value={term}
+                                onChange={(e) =>
+                                  dispatch(
+                                    editTermsAndCondition({
+                                      index: id,
+                                      value: e.target.value,
+                                    })
+                                  )
+                                }
+                              />
+                              <button
+                                type="button"
+                                className="close-input btn-close"
+                                onClick={() =>
+                                  dispatch(
+                                    removeTermsAndCondition({ index: id })
+                                  )
+                                }
+                              >
+                                <span aria-hidden="true">×</span>
+                              </button>
+                            </li>
+                          ))}
                         </ol>
                         <a
                           data-repeater-create
                           className="d-inline-flex align-items-center"
                           href="#"
+                          onClick={() =>
+                            dispatch(addTermsAndCondition({ term: "" }))
+                          }
                         >
                           <i className="ri-add-box-line me-1"></i> Add New Term
                           Row

@@ -1,61 +1,75 @@
-export type ItemType = {
+export interface ItemType {
   title: string;
   description: string;
   price: number;
-};
+}
 
-export type EditItemPayload<T> = {
+export interface EditItemPayload<T> {
   payload: {
-    invoiceIndex: number;
     itemIndex: number;
     itemKey: keyof T;
     value: T[keyof T];
   };
-};
+}
 
-export type BusinessInfo = {
+export interface ShippingPayloadType<T> {
+  payload: {
+    key: keyof T;
+    value: T[keyof T];
+  };
+}
+
+export interface InvoiceDetailPayload<T> {
+  payload: {
+    key: keyof T;
+    value: T[keyof T];
+  };
+}
+
+export interface BusinessInfo {
   name: string;
   email: string;
   address1: string;
   address2: string;
-};
+}
 
-export type Client = {
+export interface Client {
   name: string;
   email: string;
   address1: string;
   address2: string;
-};
+}
 
-export type PayloadType = {
+export interface ShippingAddress {
+  businessName: string;
+  address: string;
+  city: string;
+  postalCode: number;
+  state: string;
+  country: string;
+}
+
+export interface PayloadType {
   payload: {
     invoice: Invoice;
   };
-};
+}
 
 export interface Invoice {
   invoiceNo: number;
   invoiceDate: string;
   dueDate: string;
   customerNo: number;
-
-  //business information
   businessInfo: BusinessInfo;
-
-  //client information
   clientInfo: Client;
-
-  //   shippingAddress: string;
-
-  //items
+  shippingAddress: ShippingAddress;
   items: ItemType[];
-
-  //   signatureImgURL: string;
-  //   sender: {
-  //     name: string;
-  //     label: string;
-  //   };
-
-  //   noteToClient: string;
-  //   terms: string[];
+  totalPrice: number;
+  noteToClient: string;
+  // signatureImgURL: string;
+  sender: {
+    name: string;
+    label: string;
+  };
+  termsAndConditions: string[];
 }

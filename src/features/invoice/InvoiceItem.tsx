@@ -1,5 +1,5 @@
 import { useAppDispatch } from "../../store/hooks";
-import { editItem } from "./invoiceSlice";
+import { editItem, removeItem } from "./invoiceSlice";
 import { ItemType } from "./types";
 
 export default function InvoiceItem({
@@ -13,13 +13,12 @@ export default function InvoiceItem({
 
   const handleChange = <K extends keyof ItemType>(
     e: React.ChangeEvent<HTMLInputElement>,
-    target: K
+    key: K
   ) => {
     dispatch(
       editItem({
-        invoiceIndex: 0,
         itemIndex: index,
-        itemKey: target,
+        itemKey: key,
         value: e.target.value as ItemType[K],
       })
     );
@@ -42,7 +41,7 @@ export default function InvoiceItem({
         {/* Item price --------------->  */}
         <td className="w-15 border-end-0 border-bottom-0">
           <input
-            type="text"
+            type="number"
             className="form-control price"
             placeholder="Price"
             value={item.price}
@@ -50,12 +49,18 @@ export default function InvoiceItem({
           />
         </td>
 
-        {/* Total price ------> */}
+        {/* Total price ------------> */}
         <td
           className="w-20  rounded-end  bg-primary-light-5 close-over position-relative"
           rowSpan={2}
         >
-          <button type="button" className="close-row btn-close">
+          <button
+            type="button"
+            className="close-row btn-close"
+            onClick={() =>
+              dispatch(removeItem({ invoiceIndex: 0, itemIndex: index }))
+            }
+          >
             <span aria-hidden="true">×</span>
           </button>
         </td>

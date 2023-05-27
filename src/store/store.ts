@@ -13,7 +13,7 @@ export const store = configureStore({
 // define root state type
 export type RootState = {
   invoice: {
-    invoices: Invoice[];
+    invoice: Invoice;
   };
 };
 // Inferred type: {posts: PostsState, comments: CommentsState, users: UsersState}
